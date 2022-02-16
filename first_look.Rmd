@@ -1,0 +1,43 @@
+---
+title: "Seamstresses - First Look"
+author: "Grace Acton"
+date: "2/15/2022"
+output: html_document
+---
+
+## Loading Packages 
+
+```{r load-packages}
+library(tidyverse)
+```
+
+## Loading Data
+
+```{r load-data}
+seamstresses <- read_csv("data/seamstresses.csv")
+genealogy <- read_csv("data/genealogy.csv")
+```
+
+## City Distribution
+ 
+```{r city-bar-chart}
+seamstresses %>% 
+  filter(state == "MA", is.na(city) == FALSE) %>% 
+  ggplot(mapping = aes(x = city)) +
+  geom_bar() +
+  coord_flip()
+```
+ ## Job Titles
+ 
+```{r job-titles-bar}
+
+# Figure out how to get R to count all instances of each word, rather than full phrases
+seamstresses %>% 
+  filter(is.na(job_title) == FALSE) %>% 
+  ggplot(mapping = aes(x = job_title)) +
+  geom_bar() +
+  coord_flip()
+
+```
+ 
+ 
