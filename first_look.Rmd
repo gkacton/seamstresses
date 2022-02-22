@@ -40,4 +40,39 @@ seamstresses %>%
 
 ```
  
+```{r fix-dates}
+genealogy %>% 
+  filter(is.na(ad_date == TRUE)) %>% 
+  select(name, ad_date, ad_id) %>% 
+  mutate(ad_date = case_when(ad_id == "Worcester1844" ~ 1844))
+
+```
+
+
+```{r job-titles}
+seamstresses_separated <- seamstresses %>% 
+  separate_rows(job_title, sep = "; ") %>% 
+  mutate(job_title = fct_collapse(job_title,
+    Milliner = c("Milliner", "milliner"),
+    Dressmaker = c("Dressmaker", "dressmaker"),
+    Tailor = c("Tailor"),
+    Tailoress = c("Tailoress", "tailoress"),
+    Mantuamaker = c("Mantuamaker", "mantuamaker", "Mantua-Maker"),
+    Apprentices = c("apprentices")
+  ))
+
+ggplot(seamstresses_separated, mapping = aes(x = job_title)) +
+  geom_bar() +
+  coord_flip()
+```
+
+```{r job-title-by-year}
+seamstresses_separated %>% 
+  filter(job_title == c("Dressmaker", "Mantuamaker", "Milliner", "Tailoress")) %>% 
+  ggplot(mapping = aes(x = year, fill = job_title)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_viridis_d()
+
+```
+ 
  
