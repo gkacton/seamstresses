@@ -40,12 +40,16 @@ seamstresses %>%
 
 ```
  
-```{r fix-dates}
+```{r assorted-tidying-things}
+# Fixing dates
 genealogy %>% 
   filter(is.na(ad_date == TRUE)) %>% 
   select(name, ad_date, ad_id) %>% 
   mutate(ad_date = case_when(ad_id == "Worcester1844" ~ 1844))
 
+# Fix Persis Goldthwait ID issue
+seamstresses["name_id"][seamstresses["name"] == "Goldthwait P"] <- "Goldthwait P"
+seamstresses["name_id"][seamstresses["name"] == "Persis Goldthwaith"] <- "Goldthwait P"
 ```
 
 
@@ -75,4 +79,15 @@ seamstresses_separated %>%
 
 ```
  
+```{r join-sets}
+seamstresses_tojoin <- seamstresses %>% 
+  separate_rows(name_id, sep = "; ") 
+joined <- left_join(x = genealogy, y = seamstresses_tojoin, by = "name_id")
+```
  
+```{r ages}
+# joined %>% 
+#   select(name.x, birth_date, ad_date) %>% 
+#   mutate(advertising_age = difftime(ad_date, birth_date, tz = ""))
+```
+
