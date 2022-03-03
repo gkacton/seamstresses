@@ -7,15 +7,10 @@ output: html_document
 
 ## Loading Packages 
 
-```{r load-packages}
+```{r load-packages-data}
 library(tidyverse)
-```
 
-## Loading Data
-
-```{r load-data}
-seamstresses <- read_csv("data/seamstresses.csv")
-genealogy <- read_csv("data/genealogy.csv")
+source("data_cleaning.R")
 ```
 
 ## City Distribution
@@ -40,18 +35,6 @@ seamstresses %>%
 
 ```
  
-```{r assorted-tidying-things}
-# Fixing dates
-genealogy %>% 
-  filter(is.na(ad_date == TRUE)) %>% 
-  select(name, ad_date, ad_id) %>% 
-  mutate(ad_date = case_when(ad_id == "Worcester1844" ~ 1844))
-
-# Fix Persis Goldthwait ID issue
-seamstresses["name_id"][seamstresses["name"] == "Goldthwait P"] <- "Goldthwait P"
-seamstresses["name_id"][seamstresses["name"] == "Persis Goldthwaith"] <- "Goldthwait P"
-```
-
 
 ```{r job-titles}
 seamstresses_separated <- seamstresses %>% 
@@ -78,16 +61,14 @@ seamstresses_separated %>%
   scale_fill_viridis_d()
 
 ```
- 
-```{r join-sets}
-seamstresses_tojoin <- seamstresses %>% 
-  separate_rows(name_id, sep = "; ") 
-joined <- left_join(x = genealogy, y = seamstresses_tojoin, by = "name_id")
+
+```{r age-distribtuion}
+ages %>% 
+  ggplot(mapping = aes(x = age_ad_years)) +
+  geom_density(aes(xmin = 0,
+                   xmax = 60)) +
+  labs(title = "Age at time of advertisement")
 ```
+
  
-```{r ages}
-# joined %>% 
-#   select(name.x, birth_date, ad_date) %>% 
-#   mutate(advertising_age = difftime(ad_date, birth_date, tz = ""))
-```
 
