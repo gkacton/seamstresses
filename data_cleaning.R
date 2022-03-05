@@ -51,7 +51,9 @@ ages <- joined %>%
                                                      orders = c("%d/%B/%Y", 
                                                                 "%B/%Y", 
                                                                 "%Y"))
-         )
+         ) %>% 
+  rename("name" = "name.x") %>% 
+  distinct()
 
 
 # Age Calculation ---------------------------------------------------------
@@ -66,4 +68,35 @@ ages <- ages %>%
 ages <- ages %>% 
   mutate(age_ad_years = time_length(age_ad, unit = "years"))
 
+
+# Marriages ---------------------------------------------------------------
+
+marriages <- genealogy %>% 
+  filter(is.na(spouse) == FALSE) %>% 
+  separate_rows(spouse, sep = "; ") %>% 
+  separate_rows(marriage_date, sep = "; ") %>% 
+  filter(!grepl("2nd", spouse)) %>% 
+  filter(name != "Bradford Baylies") %>% 
+  filter(marriage_date != "28 August 1851") %>% 
+  filter(marriage_date != "15 August 1850") %>% 
+  select(name, spouse, marriage_date) %>% 
+  left_join(y = ages, by = "name") %>% 
+  mutate(marriage_date_format = lubridate::parse_date_time(ad_date, 
+                                              orders = c("%d/%B/%Y", 
+                                                         "%B/%Y", 
+                                                         "%Y"))) %>% 
+  distinct() %>% 
+  mutate(age_marriage = age(birth_date_format, marriage_date_format)) %>% 
+  mutate(age_marriage_years = time_length(age_marriage, unit = "years"))
+
+
+# Summary Stats -----------------------------------------------------------
+
+marriages %>% 
+  summarize(med_marriage_age = median(age_marriage_years, na.rm = TRUE),
+            mean_marriage_age = mean(age_marriage_years, na.rm = TRUE))
+
+ages %>% 
+  summarize(med_ad_age =  median(age_ad_years, na.rm = TRUE),
+            mean_ad_age = mean(age_ad_years, na.rm = TRUE))
 
