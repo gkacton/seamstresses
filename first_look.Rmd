@@ -2,7 +2,9 @@
 title: "Seamstresses - First Look"
 author: "Grace Acton"
 date: "2/15/2022"
-output: html_document
+output: 
+  html_document: 
+    theme: journal
 ---
 
 ## Loading Packages 
@@ -12,6 +14,15 @@ library(tidyverse)
 
 source("data_cleaning.R")
 ```
+
+## Ad Year Distribution
+
+```{r ad-years}
+seamstresses %>% 
+  ggplot(aes(x = year)) +
+  geom_density()
+```
+
 
 ## City Distribution
  
@@ -23,18 +34,6 @@ seamstresses %>%
   coord_flip()
 ```
  ## Job Titles
- 
-```{r job-titles-bar}
-
-# Figure out how to get R to count all instances of each word, rather than full phrases
-seamstresses %>% 
-  filter(is.na(job_title) == FALSE) %>% 
-  ggplot(mapping = aes(x = job_title)) +
-  geom_bar() +
-  coord_flip()
-
-```
- 
 
 ```{r job-titles}
 seamstresses_separated <- seamstresses %>% 
@@ -62,12 +61,24 @@ seamstresses_separated %>%
 
 ```
 
+## Age Distribution
+
 ```{r age-distribtuion}
 ages %>% 
   ggplot(mapping = aes(x = age_ad_years)) +
   geom_density(aes(xmin = 0,
                    xmax = 60)) +
   labs(title = "Age at time of advertisement")
+```
+
+## Marriage Age
+
+```{r marriage-age-distribution}
+marriages %>% 
+  ggplot(mapping = aes(x = age_marriage_years)) +
+  geom_density(aes(xmin = 0,
+                   xmax = 60)) +
+  labs(title = "Age at time of marriage")
 ```
 
  
