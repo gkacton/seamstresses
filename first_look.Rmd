@@ -65,7 +65,7 @@ seamstresses_separated %>%
 
 ```{r age-distribtuion}
 ages %>% 
-  ggplot(mapping = aes(x = age_ad_years)) +
+  ggplot(mapping = aes(x = age_ad)) +
   geom_density(aes(xmin = 0,
                    xmax = 60)) +
   labs(title = "Age at time of advertisement")
@@ -75,11 +75,26 @@ ages %>%
 
 ```{r marriage-age-distribution}
 marriages %>% 
-  ggplot(mapping = aes(x = age_marriage_years)) +
+  ggplot(mapping = aes(x = age_marriage)) +
   geom_density(aes(xmin = 0,
                    xmax = 60)) +
   labs(title = "Age at time of marriage")
 ```
 
- 
+## Marriage Age and Ad Age (for married women)
+
+```{r ages-marriage-ad}
+marriages %>% 
+  ggplot() +
+  geom_density(mapping = aes(x = age_ad, xmin = 0, xmax = 60), color = "darkolivegreen") +
+  geom_density(mapping = aes(x = age_marriage, xmin = 0, xmax = 60), color = "darkmagenta") 
+  
+```
+```{r ad-vs-marriage-age}
+marriages %>% 
+  ggplot(mapping = aes(x = age_marriage, y = age_ad)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+```
+
 
