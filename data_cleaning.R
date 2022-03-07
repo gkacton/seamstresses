@@ -24,9 +24,6 @@ date_available <- genealogy %>%
 
 genealogy <- rbind(date_na, date_available)
 
-
-
-
 # Persis Goldthwait -------------------------------------------------------
 
 seamstresses["name_id"][seamstresses["name"] == "Goldthwait P"] <- "Goldthwait P"
@@ -66,7 +63,7 @@ ages <- ages %>%
   mutate(age_ad = age(birth_date_format, ad_date_format))
 
 ages <- ages %>% 
-  mutate(age_ad_years = time_length(age_ad, unit = "years"))
+  mutate(age_ad = time_length(age_ad, unit = "years"))
 
 
 # Marriages ---------------------------------------------------------------
@@ -81,22 +78,32 @@ marriages <- genealogy %>%
   filter(marriage_date != "15 August 1850") %>% 
   select(name, spouse, marriage_date) %>% 
   left_join(y = ages, by = "name") %>% 
-  mutate(marriage_date_format = lubridate::parse_date_time(ad_date, 
+  mutate(marriage_date_format = lubridate::parse_date_time(marriage_date, 
                                               orders = c("%d/%B/%Y", 
                                                          "%B/%Y", 
                                                          "%Y"))) %>% 
   distinct() %>% 
   mutate(age_marriage = age(birth_date_format, marriage_date_format)) %>% 
-  mutate(age_marriage_years = time_length(age_marriage, unit = "years"))
+  mutate(age_marriage = time_length(age_marriage, unit = "years"))
 
+# Marriage vs Ad ----------------------------------------------------------
+
+marriages <- marriages %>% 
+  mutate(diff_ad_marriage = age(ad_date_format, marriage_date_format)) %>% 
+  mutate(diff_ad_marriage = time_length(diff_ad_marriage, unit = "years"))
 
 # Summary Stats -----------------------------------------------------------
 
 marriages %>% 
-  summarize(med_marriage_age = median(age_marriage_years, na.rm = TRUE),
-            mean_marriage_age = mean(age_marriage_years, na.rm = TRUE))
+  summarize(med_marriage_age = median(age_marriage, na.rm = TRUE),
+            mean_marriage_age = mean(age_marriage, na.rm = TRUE))
 
 ages %>% 
-  summarize(med_ad_age =  median(age_ad_years, na.rm = TRUE),
-            mean_ad_age = mean(age_ad_years, na.rm = TRUE))
+  summarize(med_ad_age =  median(age_ad, na.rm = TRUE),
+            mean_ad_age = mean(age_ad, na.rm = TRUE))
+
+marriages %>% 
+  summarize(med_diff = median(diff_ad_marriage, na.rm = TRUE),
+            mean_diff = mean(diff_ad_marriage, na.rm = TRUE))
+
 
