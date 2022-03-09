@@ -1,0 +1,6 @@
+---
+title: "Promptitude and Fidelity"
+author: "Grace Acton"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
