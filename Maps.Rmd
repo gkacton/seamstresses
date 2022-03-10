@@ -1,0 +1,33 @@
+---
+title: "Maps"
+author: "Grace Acton"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Libraries
+
+```{r load-packages}
+
+library(tidyverse) ## For plotting and data wrangling.
+
+library(leaflet) ## For leaflet interactive maps
+
+library(sf) ## For spatial data
+
+library(RColorBrewer) ## For colour palettes
+
+library(htmltools) ## For html
+
+library(leafsync) ## For placing plots side by side
+
+library(kableExtra) ## Table output
+
+```
+
+## Base Map
+
+```{r load-data}
+ma_towns <- st_read("data/townssurvey_shp/TOWNSSURVEY_POLYM.shp")
+```
+
