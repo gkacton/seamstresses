@@ -1,19 +1,20 @@
 # Data Cleaning Script
 
-
+ 
 # Load Packages -----------------------------------------------------------
 
 library(tidyverse)
 library(lubridate)
 library(rlang)
 library(skimr)
+library(magrittr)
 
 # Load Data ---------------------------------------------------------------
 seamstresses <- read_csv("data/seamstresses.csv")
 genealogy <- read_csv("data/genealogy.csv")
+worcester_directory <- read_csv("data/worcester.csv")
 
-
-# Worcester City Directory -------------------------------------------------
+# Worcester City Directory in Semamstresses Sheet ------------------------------
 
 date_na <- genealogy %>% 
   filter(is.na(ad_date) == TRUE) %>% 
@@ -23,6 +24,8 @@ date_available <- genealogy %>%
   filter(is.na(ad_date) == FALSE)
 
 genealogy <- rbind(date_na, date_available)
+
+
 
 # Persis Goldthwait -------------------------------------------------------
 
@@ -106,4 +109,19 @@ marriages %>%
   summarize(med_diff = median(diff_ad_marriage, na.rm = TRUE),
             mean_diff = mean(diff_ad_marriage, na.rm = TRUE))
 
+
+# Worcester Sheet ---------------------------------------------------------
+
+worcester <- seamstresses %>% 
+  filter(city == "Worcester") %>% 
+  filter(is.na(address) == FALSE) %>% 
+  mutate(street_address = paste(address, city, state, sep = ", ")) %>% 
+  select(name, job_title, street_address, year, source_name) 
+
+worcester_directory <- worcester_directory %>% 
+  mutate(source_name = "Worcester City Directory") %>% 
+  mutate(street_address = paste(street_address, city, state, sep = ", ")) %>% 
+  select(name, job_title, street_address, year, source_name)
+
+worcester <- rbind(worcester, worcester_directory)
 
