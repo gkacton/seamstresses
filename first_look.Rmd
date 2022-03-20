@@ -92,7 +92,7 @@ marriages %>%
 ```
 ```{r ad-vs-marriage-age}
 marriages %>% 
-  ggplot(mapping = aes(x = age_marriage, y = age_ad)) +
+  ggplot(mapping = aes(y = age_marriage, x = age_ad)) +
   geom_point() +
   geom_abline(slope = 1, intercept = 0)
 ```
