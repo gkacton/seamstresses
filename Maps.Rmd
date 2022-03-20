@@ -23,11 +23,59 @@ library(leafsync) ## For placing plots side by side
 
 library(kableExtra) ## Table output
 
+source("data_cleaning.R")
 ```
 
 ## Base Map
 
 ```{r load-data}
 ma_towns <- st_read("data/townssurvey_shp/TOWNSSURVEY_POLYM.shp")
+```
+
+```{r join-shape}
+map_data <- seamstresses %>% 
+  filter(state == "MA") %>% 
+  filter(is.na(city) == FALSE) %>% 
+  select(city) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  group_by(city) %>% 
+  summarize(number = n()) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, number, geometry) 
+```
+
+```{r ggplot-map}
+ggplot(map_data) +
+  geom_sf(aes(geometry = geometry, fill = number)) +
+  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white")
+```
+## Regionality of Job Titles
+
+```{r job-titles-frequency}
+job_title_popularity <- seamstresses %>% 
+  separate_rows(job_title, sep = "; ") %>% 
+  mutate(job_title = fct_collapse(job_title,
+    Milliner = c("Milliner", "milliner"),
+    Dressmaker = c("Dressmaker", "dressmaker"),
+    Tailor = c("Tailor"),
+    Tailoress = c("Tailoress", "tailoress"),
+    Mantuamaker = c("Mantuamaker", "mantuamaker", "Mantua-Maker"),
+    Apprentices = c("apprentices")
+  )) %>% 
+  filter(state == "MA", is.na(job_title) == FALSE, is.na(city) == FALSE) %>% 
+  group_by(city) %>% 
+  count(job_title) %>% 
+  slice(which.max(n)) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, job_title, geometry) 
+```
+
+```{r job-title-map}
+ggplot(job_title_popularity) +
+  geom_sf(aes(geometry = geometry, fill = job_title)) +
+  scale_fill_manual(values = c("Apprentices" = "#DDCC77", "Dressmaker" = "#CC6677", "Mantuamaker" = "#AA4499", "Milliner" = "#882255", "Tailor" = "#88CCEE", "Tailoress" = "#44AA99", "NA" = "white"))
 ```
 
