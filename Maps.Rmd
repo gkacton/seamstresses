@@ -46,9 +46,14 @@ map_data <- seamstresses %>%
 ```
 
 ```{r ggplot-map}
-ggplot(map_data) +
+ggplot(data = map_data) +
   geom_sf(aes(geometry = geometry, fill = number)) +
-  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white")
+  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
+  labs(title = "Ads per Town",
+       subtitle = "Massachusetts",
+       color = "Number of Ads") +
+  theme_void()
+  
 ```
 ## Regionality of Job Titles
 
@@ -76,6 +81,33 @@ job_title_popularity <- seamstresses %>%
 ```{r job-title-map}
 ggplot(job_title_popularity) +
   geom_sf(aes(geometry = geometry, fill = job_title)) +
-  scale_fill_manual(values = c("Apprentices" = "#DDCC77", "Dressmaker" = "#CC6677", "Mantuamaker" = "#AA4499", "Milliner" = "#882255", "Tailor" = "#88CCEE", "Tailoress" = "#44AA99", "NA" = "white"))
+  scale_fill_manual(values = c("Apprentices" = "lightpink", "Dressmaker" = "lightskyblue", "Mantuamaker" = "lightgoldenrod", "Milliner" = "thistle", "Tailor" = "lightslategray", "Tailoress" = "darkseagreen1"), na.value = "white") +
+  labs(title = "Most Popular Job Title",
+         subtitle = "By Town",
+         color = "Job Title") +
+  theme_void()
+```
+
+```{r worcester-original}
+worcester <- seamstresses %>% 
+  filter(city == "Worcester") %>% 
+  filter(is.na(address) == FALSE) %>% 
+  mutate(street_address = paste(address, city, state, sep = ", ")) %>% 
+  select(name, job_title, street_address, year, source_name) 
+```
+
+```{r worcester-geo}
+worcester <- worcester %>% 
+  mutate_geocode(location = street_address, 
+         output = "latlon", 
+         source = "google")
+```
+
+```{r worcester-map}
+worcester_map <- leaflet(data = worcester) %>% 
+  addTiles() %>% 
+  addMarkers(lng = worcester$lon, lat = worcester$lat, popup = worcester$name)
+
+worcester_map
 ```
 
