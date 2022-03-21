@@ -23,6 +23,8 @@ library(leafsync) ## For placing plots side by side
 
 library(kableExtra) ## Table output
 
+library(ggmap) ## for google geocoding
+
 source("data_cleaning.R")
 ```
 
@@ -88,26 +90,53 @@ ggplot(job_title_popularity) +
   theme_void()
 ```
 
-```{r worcester-original}
-worcester <- seamstresses %>% 
-  filter(city == "Worcester") %>% 
-  filter(is.na(address) == FALSE) %>% 
-  mutate(street_address = paste(address, city, state, sep = ", ")) %>% 
-  select(name, job_title, street_address, year, source_name) 
-```
-
 ```{r worcester-geo}
-worcester <- worcester %>% 
+
+register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
+
+worcester_geo <- worcester %>% 
   mutate_geocode(location = street_address, 
          output = "latlon", 
-         source = "google")
+         source = "google") 
+
+worcester_geo <- worcester_geo %>% 
+  filter(name != "Lucina Grover",
+         name != "Amelia Goodrich",
+         name != "Harriet Fisk") %>% 
+  mutate(lat = jitter(lat, factor = 0.005)) %>% 
+  mutate(lon = jitter(lon, factor = 0.005)) %>% 
+  mutate(popup = paste("<b>", name, "</b>" ,
+                        "<br>", year, 
+                        "<br>", job_title, 
+                        "<br>", street_address,
+                        "<br>", source_name)
+         )
+
 ```
 
 ```{r worcester-map}
-worcester_map <- leaflet(data = worcester) %>% 
-  addTiles() %>% 
-  addMarkers(lng = worcester$lon, lat = worcester$lat, popup = worcester$name)
 
-worcester_map
+
+
+worcester_map <- leaflet(data = worcester_geo) %>% 
+  addTiles(group = "OSM") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>% 
+  addCircleMarkers(
+    radius = 6,
+    fillColor = ~case_when(job_title == "Dressmaker" ~ "lightskyblue",
+                       job_title == "Milliner" ~ "purple",
+                       job_title == "Tailoress" ~ "yellow",
+                       job_title == "Store Owner" ~ "lightgreen",
+                       job_title == "Milliner; Dressmaker" ~ "pink"),
+    color = "black",
+    stroke = TRUE, 
+    fillOpacity = 1,
+    popup = ~popup) %>% 
+  addLayersControl(
+    baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
 ```
 
