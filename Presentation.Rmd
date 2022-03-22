@@ -1,6 +1,60 @@
 ---
 title: "Promptitude and Fidelity"
+subtitle: "Professional Seamstresses in Early 19th-Century New England"
 author: "Grace Acton"
+institute: "Bates College"
 date: "`r Sys.Date()`"
-output: ioslides_presentation
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
+
+```{r load-packages, include = FALSE}
+# Add any additional packages you need to this chunk
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+library(knitr)
+library(xaringanthemer)
+```
+
+```{r setup, include=FALSE}
+# For better figure resolution
+knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%")
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo(
+  primary_color = "#9cc1d1",
+  secondary_color = "#f3ecc2",
+  header_font_google = google_font("Abril Fatface"),
+  text_font_google   = google_font("Zilla Slab"),
+  code_font_google   = google_font("IBM Plex Mono"),
+  title_slide_text_color = "#000",
+  title_slide_background_image = "/Presentation_files/wallpaper2.jpeg"
+)
+```
+--- 
+
+class: center, middle
+
+
+
+---
+
+class: inverse, left, middle
+
+# Motivations
+
+```{r godeys, echo = FALSE, out.width = "60%", fig.align = "right"}
+include_graphics("~/desktop/seamstresses/seamstresses_images/GodeysLadys1.jpg")
+```
+
+
