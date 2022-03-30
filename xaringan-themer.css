@@ -139,7 +139,7 @@ a, a > code {
 }
 .title-slide {
   background-color: var(--title-slide-background-color);
-  background-image: url("/Presentation_files/wallpaper2.jpeg");
+  background-image: url("http://www.vam.ac.uk/__data/assets/image/0004/184351/2006al7146_laura_ashley_decorator_collection_wallpaper.jpg");
   background-size: cover;
 }
 .title-slide .remark-slide-number {
