@@ -116,8 +116,6 @@ worcester_geo <- worcester_geo %>%
 
 ```{r worcester-map}
 
-
-
 worcester_map <- leaflet(data = worcester_geo) %>% 
   addTiles(group = "OSM") %>%
   addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
@@ -138,5 +136,55 @@ worcester_map <- leaflet(data = worcester_geo) %>%
     options = layersControlOptions(collapsed = FALSE)
   )
 
+```
+
+## Locations of all Points in Seamstress Set
+
+```{r ma-geocoding}
+
+seamstresses_ma <- seamstresses %>% 
+  filter(state == "MA") %>% 
+  filter(is.na(city) == FALSE) %>% 
+  select(name, city, state, location_type, job_title, source_name, year, ad_id) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "Williamsburg",
+                          TRUE ~ city)) %>% 
+  mutate(city_state = paste(city, state, sep = ", "))
+
+register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
+
+ma_geo <- seamstresses_ma %>% 
+  mutate_geocode(location = city_state, 
+         output = "latlon", 
+         source = "google") %>% 
+  mutate(ma_popup = paste("<b>", name, "</b>" ,
+                          "<br>", year, 
+                          "<br>", job_title, 
+                          "<br>", city_state,
+                          "<br>", source_name)
+         )
+
+```
+
+```{r ma-leaflet-map}
+
+ma_map <- leaflet(data = ma_geo) %>% 
+  addTiles(group = "OSM") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>% 
+  addCircleMarkers(
+    radius = 6,
+    #fillColor = ~case_when(job_title == "Dressmaker" ~ "lightskyblue",
+                      # job_title == "Milliner" ~ "purple",
+                      # job_title == "Tailoress" ~ "yellow",
+                      # job_title == "Store Owner" ~ "lightgreen",
+                      #job_title == "Milliner; Dressmaker" ~ "pink"),
+    color = "black",
+    stroke = TRUE, 
+    fillOpacity = 1,
+    popup = ~ma_popup) %>% 
+  addLayersControl(
+    baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
 ```
 
