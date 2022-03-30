@@ -38,23 +38,195 @@ style_duo(
   text_font_google   = google_font("Zilla Slab"),
   code_font_google   = google_font("IBM Plex Mono"),
   title_slide_text_color = "#000",
-  title_slide_background_image = "/Presentation_files/wallpaper2.jpeg"
+  title_slide_background_image = "http://www.vam.ac.uk/__data/assets/image/0004/184351/2006al7146_laura_ashley_decorator_collection_wallpaper.jpg"
 )
 ```
---- 
 
-class: center, middle
-
-
+```{css echo=FALSE}
+.highlight-last-item > ul > li,
+.highlight-last-item > ol > li {
+  opacity: 0.5;
+}
+.highlight-last-item > ul > li:last-of-type,
+.highlight-last-item > ol > li:last-of-type {
+  opacity: 1;
+}
+```
 
 ---
 
 class: inverse, left, middle
+background-image: url("https://i.pinimg.com/564x/7e/f5/36/7ef536bdeb9bef7b3bfa5656fa270726.jpg")
+background-position: right
+background-size: 55%
+
 
 # Motivations
 
-```{r godeys, echo = FALSE, out.width = "60%", fig.align = "right"}
-include_graphics("~/desktop/seamstresses/seamstresses_images/GodeysLadys1.jpg")
+---
+
+class: left, top, highlight-last-item
+background-image: url("https://i.pinimg.com/564x/98/19/a1/9819a1550ab629cfc11426f0df7547e7.jpg")
+background-position: right
+text-font-size: "1.5rem"
+
+### The Village
+
+--
+
+- New England, 1790 - 1840
+
+--
+
+- Interpretation
+```{r interp-image, echo=FALSE, fig.align="left", out.width="25%"}
+include_graphics("https://i.pinimg.com/564x/3c/5d/6e/3c5d6ec6343017002f6dfc76a12468cf.jpg")
 ```
 
+--
+
+- Research
+```{r research-image, echo=FALSE, fig.align="left", out.width="20%"}
+include_graphics("https://i.pinimg.com/564x/af/c3/0e/afc30efc88de62bc510242358f868f03.jpg")
+```
+
+--
+
+---
+
+class: inverse, left, middle
+background-image: url("https://i.pinimg.com/564x/d0/1d/30/d01d30ec1edd32a748558dd843fdaa80.jpg")
+background-position: right
+background-size: 60%
+
+
+## Methods
+
+---
+
+class: center
+
+## 19th Century Newspapers
+
+.pull-left[
+
+### Pros
+]
+
+.pull-right[
+
+### Cons 
+]
+
+--
+.pull-left[
+
+- Contain information not found elsewhere
+]
+
+.pull-right[
+
+- New vocabulary
+]
+
+--
+
+.pull-left[
+
+- Pre-1840, generally very readable
+]
+
+.pull-right[
+
+- Sometimes in poor condition
+]
+
+--
+
+.pull-left[
+
+- Easy to correctly date
+]
+
+.pull-right[
+
+- Difficult to identify individuals, especially women
+]
+
+---
+
+class: left, top
+
+## Digitization
+
+### 1. Transcribe
+
+--
+.pull-left[
+```{r cloyes-ad, echo=FALSE, fig.align='middle', out.width='50%'}
+include_graphics("https://i.pinimg.com/564x/c6/3f/79/c63f7952e1e7b8f42920bf34b9ad1c0f.jpg")
+```
+]
+
+--
+.pull-right[
+```{r cloyes-transcript, echo=FALSE, fig.align='middle', out.width='80%'}
+include_graphics("https://i.pinimg.com/564x/89/3b/2b/893b2b2487c4e133c7d2d87c7a63f612.jpg")
+```
+]
+
+---
+
+class: left, top
+
+## Digitization
+
+### 2. Document
+
+--
+.pull-left[
+
+- Name
+- Job title(s)
+- Address
+- Type of location
+- Other details
+- Newspaper name
+- Year of ad
+]
+--
+
+.pull-right[
+```{r spreadsheet, echo=FALSE, fig.align='middle', out.width="100%"}
+include_graphics("https://i.pinimg.com/originals/85/aa/52/85aa52e6376fcbfeda5ec72b3a7fc6e9.jpg")
+```
+]
+---
+
+class: left, top
+
+## Digitization
+
+### 3. Research
+--
+.pull-left[
+
+- Full name
+- Birth date
+- Parents
+- Spouse
+- Marriage date
+- Death data
+- Death location
+- Addresses
+- Relatives 
+]
+
+---
+
+class: left, top
+
+## Digitization
+
+### 4. Convert to R!
 
