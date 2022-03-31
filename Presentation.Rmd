@@ -209,6 +209,7 @@ class: left, top
 
 ### 3. Research
 --
+
 .pull-left[
 
 - Full name
@@ -216,7 +217,7 @@ class: left, top
 - Parents
 - Spouse
 - Marriage date
-- Death data
+- Death date
 - Death location
 - Addresses
 - Relatives 
@@ -229,4 +230,11 @@ class: left, top
 ## Digitization
 
 ### 4. Convert to R!
+
+---
+
+class: invert, right, middle
+
+# Analysis
+
 
