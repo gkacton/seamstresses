@@ -26,6 +26,18 @@ date_available <- genealogy %>%
 genealogy <- rbind(date_na, date_available)
 
 
+# Separation by Job Title -------------------------------------------------
+
+seamstresses_separated <- seamstresses %>% 
+  separate_rows(job_title, sep = "; ") %>% 
+  mutate(job_title = fct_collapse(job_title,
+                                  Milliner = c("Milliner", "milliner"),
+                                  Dressmaker = c("Dressmaker", "dressmaker"),
+                                  Tailor = c("Tailor"),
+                                  Tailoress = c("Tailoress", "tailoress"),
+                                  Mantuamaker = c("Mantuamaker", "mantuamaker", "Mantua-Maker"),
+                                  Apprentices = c("apprentices")
+  ))
 
 # Persis Goldthwait -------------------------------------------------------
 

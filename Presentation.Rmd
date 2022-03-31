@@ -17,11 +17,13 @@ output:
 
 ```{r load-packages, include = FALSE}
 # Add any additional packages you need to this chunk
+library(xaringan)
 library(tidyverse)
 library(tidymodels)
 library(palmerpenguins)
 library(knitr)
 library(xaringanthemer)
+source("data_cleaning.R")
 ```
 
 ```{r setup, include=FALSE}
@@ -86,7 +88,7 @@ include_graphics("https://i.pinimg.com/564x/3c/5d/6e/3c5d6ec6343017002f6dfc76a12
 --
 
 - Research
-```{r research-image, echo=FALSE, fig.align="left", out.width="20%"}
+```{r research, echo=FALSE, fig.align="left", out.width="20%"}
 include_graphics("https://i.pinimg.com/564x/af/c3/0e/afc30efc88de62bc510242358f868f03.jpg")
 ```
 
@@ -223,6 +225,16 @@ class: left, top
 - Relatives 
 ]
 
+--
+
+.pull-right[
+
+```{r vital-records, echo=FALSE, fig.align='center', out.width='50%'}
+knitr::include_graphics(
+  "https://i.pinimg.com/564x/41/3b/c6/413bc64ac5be4f9c0fcce274a0ef341c.jpg")
+```
+]
+
 ---
 
 class: left, top
@@ -234,7 +246,114 @@ class: left, top
 ---
 
 class: invert, right, middle
+background-image: url("https://i.pinimg.com/564x/9d/6a/0a/9d6a0a1de32897c058b9f02900cc11ad.jpg")
+background-position: left, top
+background-size: 48%
 
 # Analysis
 
+---
+
+class: center, middle
+
+# Part 1 <br> When?
+
+---
+class: top, center
+
+## Distribution of Ads by Year
+
+```{r theme-setup, echo=FALSE}
+theme_standard <- theme(legend.key.size = unit(0.4, 'cm'),
+        legend.text = element_text(size = 8, family = 'Georgia'),
+        legend.title = element_text(size = 10, family = 'Georgia'),
+        axis.text = element_text(size = 8, family = 'Georgia'),
+        axis.title.x = element_text(size = 11, family = 'Georgia'),
+        axis.title.y = element_text(size = 11, family = 'Georgia'))
+```
+
+
+```{r ad-years, out.width="75%", warning=FALSE, echo=FALSE, fig.align='center'}
+seamstresses %>% 
+  ggplot(aes(x = year)) +
+  geom_density() +
+  labs(x = "Year",
+       y = "Density") +
+  theme_standard +
+  theme_xaringan()
+```
+
+---
+class: top, center
+
+## Job Title Popularity By Year --> relocate slide
+
+```{r job-title-by-year, out.width='75%', warning=FALSE, echo=FALSE, fig.align='center'}
+seamstresses_separated %>% 
+  filter(job_title == c("Dressmaker", "Mantuamaker", "Milliner", "Tailoress")) %>% 
+  ggplot(mapping = aes(x = year, 
+                       fill = job_title,
+                       xmin = 1810, xmax = 1850)) +
+  labs(x = "Year",
+       y = "Density") +
+  geom_density(alpha = 0.5) +
+  labs(fill = "Job Title") +
+  theme_standard +
+  theme_xaringan()
+
+```
+
+---
+class: center, middle
+
+# Part 2 <br> Who?
+
+---
+class: top, middle
+
+## Age at Time of Advertisement
+
+```{r age-distribtuion, echo=FALSE, warning=FALSE, fig.align='center', out.width='75%'}
+ages %>% 
+  ggplot(mapping = aes(x = age_ad)) +
+  geom_density(aes(xmin = 0,
+                   xmax = 60)) +
+  labs(x = "Year",
+       y = "Density") +
+  theme_standard +
+  theme_xaringan()
+```
+
+---
+class: top, middle
+
+## Age at Marriage
+
+```{r marrriage-age, echo=FALSE, warning=FALSE, out.width='75%', fig.align='center'}
+marriages %>% 
+  ggplot(mapping = aes(x = age_marriage)) +
+  geom_density(aes(xmin = 0,
+                   xmax = 60)) +
+  labs(x = "Year",
+       y = "Density") +
+  theme_standard +
+  theme_xaringan()
+```
+
+---
+class: top, middle
+
+## Which comes first?
+
+```{r ad-vs-marriage, echo=FALSE, warning=FALSE, out.width='75%', fig.align='center'}
+marriages %>% 
+  ggplot(mapping = aes(y = age_marriage, x = age_ad)) +
+  geom_point(color = "black") +
+  geom_abline(slope = 1, intercept = 0, color = "black") +
+  labs(x = "Age at Advertisement",
+       y = "Age at Marriage")
+  theme_standard +
+  theme_xaringan()
+```
+>>>>>>> beae0383e7c6baa7c29110b422792a96efbccf7f
 
