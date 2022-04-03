@@ -354,6 +354,26 @@ marriages %>%
   theme_standard +
   theme_xaringan()
 ```
- ---
- class: 
+ 
+---
+class: center, middle
+ 
+# Part 3 <br> Where? 
+### The Map Section
+ 
+---
+class: top, middle
+
+## Ads per Town
+
+```{r ggplot-map, echo=FALSE, warning=FALSE, out.width='75%', fig.align='center'}
+ggplot(data = map_data) +
+  geom_sf(aes(geometry = geometry, fill = number)) +
+  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
+  labs(color = "Number of Ads") +
+  theme_void() +
+  theme_standard +
+  theme(axis.line = element_blank())
+  
+```
 
