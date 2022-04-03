@@ -13,8 +13,9 @@ library(magrittr)
 seamstresses <- read_csv("data/seamstresses.csv")
 genealogy <- read_csv("data/genealogy.csv")
 worcester_directory <- read_csv("data/worcester.csv")
+ad_links <- read_csv("data/ad_links.csv")
 
-# Worcester City Directory in Semamstresses Sheet ------------------------------
+# Worcester City Directory in Seamstresses Sheet ------------------------------
 
 date_na <- genealogy %>% 
   filter(is.na(ad_date) == TRUE) %>% 
@@ -136,4 +137,124 @@ worcester_directory <- worcester_directory %>%
   select(name, job_title, street_address, year, source_name)
 
 worcester <- rbind(worcester, worcester_directory)
+
+
+# Add Ads to Map Data -----------------------------------------------------
+
+genealogy <- genealogy %>% 
+  left_join(ad_links, by = "ad_id") %>% 
+  rename(ad_image = ad_link.y)
+
+
+# MAP PREP ----------------------------------------------------------------
+
+# Load data 
+ma_towns <- st_read("data/townssurvey_shp/TOWNSSURVEY_POLYM.shp")
+
+# Join shape data to MA set
+map_data <- seamstresses %>% 
+  filter(state == "MA") %>% 
+  filter(is.na(city) == FALSE) %>% 
+  select(city) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  group_by(city) %>% 
+  summarize(number = n()) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, number, geometry) 
+
+# Determine frequencies of job titles by town
+job_title_popularity <- seamstresses %>% 
+  separate_rows(job_title, sep = "; ") %>% 
+  mutate(job_title = fct_collapse(job_title,
+                                  Milliner = c("Milliner", "milliner"),
+                                  Dressmaker = c("Dressmaker", "dressmaker"),
+                                  Tailor = c("Tailor"),
+                                  Tailoress = c("Tailoress", "tailoress"),
+                                  Mantuamaker = c("Mantuamaker", "mantuamaker", "Mantua-Maker"),
+                                  Apprentices = c("apprentices")
+  )) %>% 
+  filter(state == "MA", is.na(job_title) == FALSE, is.na(city) == FALSE) %>% 
+  group_by(city) %>% 
+  count(job_title) %>% 
+  slice(which.max(n)) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, job_title, geometry) 
+
+# Geocode Worcester Sheet
+register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
+
+worcester_geo <- worcester %>% 
+  mutate_geocode(location = street_address, 
+                 output = "latlon", 
+                 source = "google") 
+
+worcester_geo <- worcester_geo %>% 
+  filter(name != "Lucina Grover",
+         name != "Amelia Goodrich",
+         name != "Harriet Fisk") %>% 
+  mutate(lat = jitter(lat, factor = 0.005)) %>% 
+  mutate(lon = jitter(lon, factor = 0.005)) %>% 
+  mutate(popup = paste("<b>", name, "</b>" ,
+                       "<br>", year, 
+                       "<br>", job_title, 
+                       "<br>", street_address,
+                       "<br>", source_name)
+  )
+
+worcester_geo <- worcester_geo %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  st_jitter(factor = 0.002) 
+
+# Geocode MA Data
+seamstresses_ma <- seamstresses %>% 
+  filter(state == "MA") %>% 
+  filter(is.na(city) == FALSE) %>% 
+  select(name, city, state, location_type, job_title, source_name, year, ad_id) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "Williamsburg",
+                          TRUE ~ city)) %>% 
+  mutate(city_state = paste(city, state, sep = ", ")) 
+
+register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
+
+ma_geo <- seamstresses_ma %>% 
+  mutate_geocode(location = city_state, 
+                 output = "latlon", 
+                 source = "google") %>% 
+  mutate(ma_popup = paste("<b>", name, "</b>" ,
+                          "<br>", year, 
+                          "<br>", job_title, 
+                          "<br>", city_state,
+                          "<br>", source_name)
+  )
+
+ma_geo <- ma_geo %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  st_jitter(factor = 0.002) 
+
+# Geocode Genealogy Data
+genealogy_data <- genealogy %>% 
+  filter(is.na(ad_image) == FALSE) %>% 
+  filter(is.na(state) == FALSE) %>% 
+  select(name, birth_date, father, mother, address, city, state, spouse, marriage_date, ad_date, death_date, ad_image, ad_id) %>% 
+  unite(street_address, address, city, state, na.rm = TRUE, sep = ", ") %>% 
+  mutate(genealogy_popup = paste("<b>", name, "</b>",
+                                 "<br> Birth Date: ", birth_date,
+                                 "<br> Parents: ", father, " and ", mother,
+                                 "<br> Spouse: ", spouse,
+                                 "<br> Marriage Date: ", marriage_date,
+                                 "<br> Address: ", street_address,
+                                 "<br> Death Date: ", death_date,
+                                 "<br><img src=",ad_image," width = '200'>"))
+
+register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
+
+genealogy_geo <- genealogy_data %>% 
+  mutate_geocode(location = street_address, 
+                 output = "latlon", 
+                 source = "google") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  st_jitter(factor = 0.002) 
 
