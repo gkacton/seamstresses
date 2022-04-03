@@ -56,7 +56,6 @@ style_duo(
 ```
 
 ---
-
 class: inverse, left, middle
 background-image: url("https://i.pinimg.com/564x/7e/f5/36/7ef536bdeb9bef7b3bfa5656fa270726.jpg")
 background-position: right
@@ -355,4 +354,5 @@ marriages %>%
   theme_standard +
   theme_xaringan()
 ```
-
+ ---
+ class: 
