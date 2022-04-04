@@ -8,6 +8,13 @@ library(lubridate)
 library(rlang)
 library(skimr)
 library(magrittr)
+library(leaflet) ## For leaflet interactive maps
+library(sf) ## For spatial data
+library(RColorBrewer) ## For colour palettes
+library(htmltools) ## For html
+library(leafsync) ## For placing plots side by side
+library(kableExtra) ## Table output
+library(ggmap) ## for google geocoding
 
 # Load Data ---------------------------------------------------------------
 seamstresses <- read_csv("data/seamstresses.csv")
