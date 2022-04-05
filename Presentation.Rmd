@@ -350,7 +350,7 @@ marriages %>%
   geom_point(color = "black") +
   geom_abline(slope = 1, intercept = 0, color = "black") +
   labs(x = "Age at Advertisement",
-       y = "Age at Marriage")
+       y = "Age at Marriage") +
   theme_standard +
   theme_xaringan()
 ```
@@ -362,18 +362,156 @@ class: center, middle
 ### The Map Section
  
 ---
-class: top, middle
+class: top, middle, inverse
+background-color: #FFFFFF
 
 ## Ads per Town
 
-```{r ggplot-map, echo=FALSE, warning=FALSE, out.width='75%', fig.align='center'}
+```{r ggplot-map, echo=FALSE, warning=FALSE, out.width='90%', fig.align='top'}
 ggplot(data = map_data) +
   geom_sf(aes(geometry = geometry, fill = number)) +
-  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
-  labs(color = "Number of Ads") +
-  theme_void() +
+  scale_fill_gradient(low = "#e6f4fa", high = "#3c5661", na.value = "#f8f3d4") +
+  labs(fill = "Number of Ads") +
+  theme_xaringan(background_color = "#FFFFFF") +
   theme_standard +
-  theme(axis.line = element_blank())
+  theme(axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank(),
+        strip.background = element_blank(),
+        legend.title = element_text(color = "#9cc1d1"),
+        line = element_line(size = 0.001))
   
+```
+
+---
+class: top, left, inverse
+background-color: #FFFFFF
+
+## Job Title Popularity by Town
+
+```{r job-title-map, echo=FALSE, warning=FALSE, out.width='90%', fig.align='middle'}
+ggplot(job_title_popularity) +
+  geom_sf(aes(geometry = geometry, fill = job_title)) +
+  scale_fill_manual(values = c("Apprentices" = "#dbaca4", "Dressmaker" = "#9cc1d1", "Mantuamaker" = "#ebdc73", "Milliner" = "#cddec5", "Tailor" = "#6d6755", "Tailoress" = "#88a185"), na.value = "#f8f3d4") +
+  labs(fill = "Job Title") +
+  theme_xaringan(background_color = "#FFFFFF") +
+  theme_standard +
+  theme(axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank(),
+        strip.background = element_blank(),
+        legend.title = element_text(color = "#9cc1d1"),
+        line = element_line(size = 0.001))
+```
+
+---
+class: right, middle
+
+## All Massachusetss Seamstresses
+
+```{r ma-leaflet-map, echo=FALSE, warning=FALSE, out.width='60%', fig.align='middle'}
+
+ma_map <- leaflet(data = ma_geo) %>% 
+  addTiles(group = "OSM") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>% 
+  addCircleMarkers(
+    radius = 6,
+    fillColor = ~case_when(job_title == "Dressmaker" ~ "lightskyblue",
+                      job_title == "Milliner" ~ "purple",
+                      job_title == "Tailoress" ~ "yellow",
+                      job_title == "Store Owner" ~ "lightgreen",
+                      job_title == "Store owner" ~ "lightgreen",
+                      job_title == "Milliner; Dressmaker" ~ "blueviolet",
+                      job_title == "Milliner; dressmaker" ~ "blueviolet",
+                      job_title == "Tailor" ~ "blue",
+                      job_title == "Milliner; mantuamaker" ~ "magenta",
+                      job_title == "Milliner; Mantua-Maker" ~ "magenta",
+                      job_title == "Mantuamaker; Milliner" ~ "magenta",
+                      job_title == "Tailoress; apprentices" ~ "orange"),
+    color = "black",
+    stroke = TRUE, 
+    weight = 2,
+    fillOpacity = 0.5,
+    popup = ~ma_popup) %>% 
+  addLayersControl(
+    baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>% 
+  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+
+ma_map
+```
+
+---
+class: right, middle
+
+## Worcester City Directories
+
+```{r worcester-map, echo=FALSE, warning=FALSE, out.width='60%', fig.align='middle'}
+
+worcester_map <- leaflet(data = worcester_geo) %>% 
+  addTiles(group = "OSM") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>% 
+  addCircleMarkers(
+    radius = 6,
+    fillColor = ~case_when(job_title == "Dressmaker" ~ "lightskyblue",
+                      job_title == "Milliner" ~ "purple",
+                      job_title == "Tailoress" ~ "yellow",
+                      job_title == "Store Owner" ~ "lightgreen",
+                      job_title == "Store owner" ~ "lightgreen",
+                      job_title == "Milliner; Dressmaker" ~ "blueviolet",
+                      job_title == "Milliner; dressmaker" ~ "blueviolet",
+                      job_title == "Tailor" ~ "blue",
+                      job_title == "Milliner; mantuamaker" ~ "magenta",
+                      job_title == "Milliner; Mantua-Maker" ~ "magenta",
+                      job_title == "Mantuamaker; Milliner" ~ "magenta",
+                      job_title == "Tailoress; apprentices" ~ "orange"),
+    color = "black",
+    stroke = TRUE, 
+    weight = 2,
+    fillOpacity = 0.5,
+    popup = ~popup) %>% 
+  addLayersControl(
+    baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>% 
+  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+
+worcester_map
+
+```
+
+---
+class: right, middle
+
+## Seamstresses with Genealogy Information
+
+```{r genealogy-map, echo=FALSE, warning=FALSE, out.width='60%', fig.align='left'}
+
+genealogy_map <- leaflet(data = genealogy_geo) %>% 
+  addTiles(group = "OSM") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>% 
+  addCircleMarkers(
+    radius = 6,
+    fillColor = "#9cc1d1",
+    color = "black",
+    stroke = TRUE, 
+    weight = 2,
+    fillOpacity = 0.75,
+    popup = ~genealogy_popup) %>% 
+  addLayersControl(
+    baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>% 
+  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+
+genealogy_map
 ```
 

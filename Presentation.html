@@ -4,8 +4,19 @@
     <title>Promptitude and Fidelity</title>
     <meta charset="utf-8" />
     <meta name="author" content="Grace Acton" />
-    <meta name="date" content="2022-04-04" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2022-04-05" />
+    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-1.3.1/leaflet.js"></script>
+    <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+    <script src="libs/proj4-2.6.2/proj4.min.js"></script>
+    <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+    <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+    <script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -16,7 +27,7 @@ class: center, middle, inverse, title-slide
 ## Professional Seamstresses in Early 19th-Century New England
 ### Grace Acton
 ### Bates College
-### 2022-04-04
+### 2022-04-05
 
 ---
 
@@ -269,193 +280,6 @@ class: top, middle
 ## Which comes first?
 
 &lt;img src="Presentation_files/figure-html/ad-vs-marriage-1.png" width="75%" style="display: block; margin: auto;" /&gt;
-
-```
-## List of 19
-##  $ axis.title.x       :List of 11
-##   ..$ family       : chr "Georgia"
-##   ..$ face         : NULL
-##   ..$ colour       : NULL
-##   ..$ size         : num 11
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ axis.title.y       :List of 11
-##   ..$ family       : chr "Georgia"
-##   ..$ face         : NULL
-##   ..$ colour       : NULL
-##   ..$ size         : num 11
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ axis.text          :List of 11
-##   ..$ family       : chr "Georgia"
-##   ..$ face         : NULL
-##   ..$ colour       : chr "#475960"
-##   ..$ size         : num 8
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ legend.key.size    : 'simpleUnit' num 0.4cm
-##   ..- attr(*, "unit")= int 1
-##  $ legend.text        :List of 11
-##   ..$ family       : chr "Georgia"
-##   ..$ face         : NULL
-##   ..$ colour       : NULL
-##   ..$ size         : num 8
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ legend.title       :List of 11
-##   ..$ family       : chr "Georgia"
-##   ..$ face         : NULL
-##   ..$ colour       : NULL
-##   ..$ size         : num 10
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ line               :List of 6
-##   ..$ colour       : chr "#2B363A"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ lineend      : NULL
-##   ..$ arrow        : logi FALSE
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
-##  $ rect               :List of 5
-##   ..$ fill         : chr "#9cc1d1"
-##   ..$ colour       : NULL
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
-##  $ text               :List of 11
-##   ..$ family       : chr "Zilla Slab"
-##   ..$ face         : NULL
-##   ..$ colour       : chr "#1D2427"
-##   ..$ size         : num 25
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ title              :List of 11
-##   ..$ family       : chr "Abril Fatface"
-##   ..$ face         : NULL
-##   ..$ colour       : chr "#f3ecc2"
-##   ..$ size         : num 28
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ axis.title         :List of 11
-##   ..$ family       : NULL
-##   ..$ face         : NULL
-##   ..$ colour       : NULL
-##   ..$ size         : num 22.4
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ axis.ticks         :List of 6
-##   ..$ colour       : chr "#809EAB"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ lineend      : NULL
-##   ..$ arrow        : logi FALSE
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
-##  $ legend.key         :List of 5
-##   ..$ fill         : chr "transparent"
-##   ..$ colour       : logi NA
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
-##  $ panel.background   :List of 5
-##   ..$ fill         : chr "#9cc1d1"
-##   ..$ colour       : chr "#9cc1d1"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
-##  $ panel.grid.major   :List of 6
-##   ..$ colour       : chr "#809EAB"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ lineend      : NULL
-##   ..$ arrow        : logi FALSE
-##   ..$ inherit.blank: logi TRUE
-##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
-##  $ panel.grid.minor   :List of 6
-##   ..$ colour       : chr "#8EB0BE"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ lineend      : NULL
-##   ..$ arrow        : logi FALSE
-##   ..$ inherit.blank: logi TRUE
-##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
-##  $ plot.background    :List of 5
-##   ..$ fill         : chr "#9cc1d1"
-##   ..$ colour       : chr "#9cc1d1"
-##   ..$ size         : NULL
-##   ..$ linetype     : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
-##  $ plot.caption       :List of 11
-##   ..$ family       : NULL
-##   ..$ face         : NULL
-##   ..$ colour       : chr "#39474D"
-##   ..$ size         : num 20
-##   ..$ hjust        : NULL
-##   ..$ vjust        : NULL
-##   ..$ angle        : NULL
-##   ..$ lineheight   : NULL
-##   ..$ margin       : NULL
-##   ..$ debug        : NULL
-##   ..$ inherit.blank: logi FALSE
-##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
-##  $ plot.title.position: chr "plot"
-##  - attr(*, "class")= chr [1:2] "theme" "gg"
-##  - attr(*, "complete")= logi FALSE
-##  - attr(*, "validate")= logi TRUE
-```
  
 ---
 class: center, middle
@@ -464,11 +288,44 @@ class: center, middle
 ### The Map Section
  
 ---
-class: top, middle
+class: top, middle, inverse
+background-color: #FFFFFF
 
 ## Ads per Town
 
-&lt;img src="Presentation_files/figure-html/ggplot-map-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Presentation_files/figure-html/ggplot-map-1.png" width="90%" /&gt;
+
+---
+class: top, left, inverse
+background-color: #FFFFFF
+
+## Job Title Popularity by Town
+
+&lt;img src="Presentation_files/figure-html/job-title-map-1.png" width="90%" /&gt;
+
+---
+class: right, middle
+
+## All Massachusetss Seamstresses
+
+<div id="htmlwidget-8df664a69f456542d671" style="width:60%;height:1112.4px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8df664a69f456542d671">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["Stamen.Toner",null,"Toner",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["Stamen.TonerLite",null,"Toner Lite",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[42.7725702315232,42.4832968288966,42.4598223319981,42.4607818625876,42.7750667975959,42.4587301129215,42.4611993553816,42.2584429512376,42.2731319200879,42.2476269135717,42.0795545487485,42.3943708034097,42.2706616564123,42.0729737170362,42.3702285582683,42.2266548811553,42.6348839145301,42.4479113114287,42.4547250699658,42.4494820890208,42.3884966454726,42.4530624055967,42.4465412453549,42.4528201002718,42.4273744523437,42.4515830016802,42.4546133558102,42.2437846716534,42.3914318351118,42.6381737244528,42.4468613950211,42.4508132629013,42.4454619624856,42.4500509143968,42.8100265007972,42.63098239462,42.4462757668588,42.449474424639,42.453570628848,42.4481702906589,42.371171611559,42.5131480657333,42.4227789838304,42.3292612643744,42.4230727029877,42.4196061547999,42.4576772578239,42.2594814979346,42.2576353040366,42.2642918472202,42.2635969096691,42.2576558273557,42.8109791259677,42.324059250065,42.6308340187017,42.4513962772276,42.632400896336,42.3738959429563,42.1098973908205,42.4272228208547,42.4836533732526,42.4206764146973,42.4184652244977,42.4206402975852,42.3205674288012,42.3233612710867,42.4811203700409,42.427023216863,42.4257444718489,42.6327773799383,42.2628369917404,42.2600634170307,42.2579665783258,42.2582759541204,42.2630885197344,42.2673812792617,42.2625786176676,42.2613053897189,42.2600741161409,42.2628754093577,42.2624241647853,42.6349852125323,42.6324396484496,42.6316681341977,42.6341408756137,42.6301331673081,42.1065372264543,42.6333299855837,42.6134029924999,42.6123888409608,42.583158638517,42.6006612933355,42.4203722472646,42.5563341228825],[-71.078131820774,-71.4338055316401,-71.3466553138768,-71.3511154359564,-71.0787802901812,-71.3505048796948,-71.3487057636495,-71.8022228823546,-72.0823695124984,-71.9896020974923,-72.0311774960186,-72.7326528043473,-72.6668931148927,-72.0322406908827,-72.5211327559465,-72.7279364209697,-71.3189952148066,-73.2464457443659,-73.2423815816935,-73.2472861746822,-72.8409057255762,-73.243159709391,-73.2427510253341,-73.246594119472,-72.1023914627714,-73.2445092275953,-73.247852896133,-73.2067761737599,-72.8416808654538,-71.3151297150029,-73.2447189732641,-73.2438221885385,-73.2461269272514,-73.2437372180081,-70.8767546382806,-71.3188081100195,-73.2440472586147,-73.242013870715,-73.2457650573228,-73.243780617415,-72.5184753993023,-73.2306622719176,-72.1040702931376,-72.6424048463309,-72.1016919424134,-72.104956703648,-71.3485917743394,-71.8053727175915,-71.7996929553942,-71.7991338987595,-71.8051205521372,-71.8029321707979,-70.8793632932356,-72.64046297217,-71.3196340976614,-71.6737837502163,-71.3167444062645,-72.5171072130475,-72.076855816802,-72.1075545847342,-72.1875713664889,-72.1066790693885,-72.10685390748,-72.1049657147855,-72.6448241485636,-72.6410286685446,-72.1889390836261,-72.107061298533,-72.1020878520651,-71.3132091511476,-71.8057334054129,-71.8035218111675,-71.8006801129106,-71.8016086341439,-71.8008031860441,-71.8024579574708,-71.8048701823725,-71.8035770535951,-71.8031590331034,-71.8028321563212,-71.8044811104243,-71.3174252470556,-71.3157387253208,-71.3133035819382,-71.3183877601929,-71.3154249958591,-72.0764638817441,-71.315512406104,-71.5738713926123,-71.5774952970218,-72.5979760364852,-72.2246368752095,-72.108472984633,-72.0706697486072],6,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":2,"opacity":0.5,"fill":true,"fillColor":["yellow","magenta","magenta","magenta","yellow","blueviolet","magenta","magenta","magenta","magenta",null,"blueviolet","magenta","blue","yellow","magenta","blueviolet","blueviolet",null,"lightskyblue","magenta","magenta","blueviolet","blueviolet","blueviolet","blueviolet","blueviolet","blueviolet","magenta","yellow","blueviolet","blueviolet","blueviolet","lightskyblue","purple","blueviolet","blueviolet",null,"purple","purple","blueviolet","blueviolet",null,"yellow","blueviolet","blueviolet","blueviolet","blueviolet","lightgreen","blueviolet","lightskyblue","blueviolet","lightskyblue",null,"blueviolet","orange",null,"orange","yellow","blueviolet",null,null,"yellow","orange",null,null,"blue","purple","orange",null,"lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","yellow","yellow","yellow","yellow","lightskyblue",null,null,null,null,null,"blue",null,null,null,null,"blueviolet","blueviolet","yellow"],"fillOpacity":0.5},null,null,["<b> Mehitable Emerson <\/b> <br> 1810 <br> Tailoress <br> Haverhill, MA <br> Merrimack Intelligencer","<b> Betsey Robbins <\/b> <br> 1818 <br> Milliner; mantuamaker <br> Acton, MA <br> Middlesex Gazette","<b> Betsey Robbins <\/b> <br> 1819 <br> Milliner; mantuamaker <br> Concord, MA <br> Middlesex Gazette","<b> Betsey Robbins <\/b> <br> 1820 <br> Milliner; mantuamaker <br> Concord, MA <br> Middlesex Gazette","<b> Ruth W. Messer <\/b> <br> 1823 <br> Tailoress <br> Haverhill, MA <br> Haverhill Gazette","<b> Betsey W. Dakin <\/b> <br> 1825 <br> Milliner; dressmaker <br> Concord, MA <br> Concord Gazette and Middlesex Yeoman","<b> Ann Prescott <\/b> <br> 1825 <br> Milliner; mantuamaker <br> Concord, MA <br> Concord Gazette and Middlesex Yeoman","<b> Miss C. Cloyes <\/b> <br> 1826 <br> Milliner; Mantua-Maker <br> Worcester, MA <br> Massachusetts Spy","<b> T.W. Convers <\/b> <br> 1828 <br> Milliner; mantuamaker <br> North Brookfield, MA <br> Massachusetts Spy","<b> A. Convers <\/b> <br> 1828 <br> Milliner; mantuamaker <br> Spencer, MA <br> Massachusetts Spy","<b> S. Whitney <\/b> <br> 1830 <br> Dressmaker; Mantuamaker <br> Southbridge, MA <br> Southbridge Register","<b> J.A. Pomeroy <\/b> <br> 1830 <br> Milliner; Dressmaker <br> Williamsburg, MA <br> Hampshire Gazette","<b> Mrs. Gillett <\/b> <br> 1830 <br> Milliner; Mantua-Maker <br> Easthampton, MA <br> Hampshire Gazette","<b> Bradford Baylies <\/b> <br> 1830 <br> Tailor <br> Southbridge, MA <br> Southbridge Register; and Farmers; Mechanics and Manufacturers Advocate","<b> Miss S. Pomroy <\/b> <br> 1830 <br> Tailoress <br> Amherst, MA <br> Hampshire Gazette","<b> Clarissa Trumbull; Mary Ann Nash <\/b> <br> 1831 <br> Mantuamaker; Milliner <br> Southampton, MA <br> Hampshire Gazette","<b> S. Sanders <\/b> <br> 1831 <br> Milliner; dressmaker <br> Lowell, MA <br> Middlesex Telegraph and Manufacturers' and Farmers' Advocate","<b> Mariett Ingham <\/b> <br> 1831 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> J. Stevens; Mrs. Stevens <\/b> <br> 1831 <br> Store owner; Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Miss M. Dunham; Miss A. Dunham <\/b> <br> 1832 <br> Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Mary W. Lee <\/b> <br> 1832 <br> Mantuamaker; Milliner <br> Chesterfield, MA <br> Hampshire Gazette","<b> Miss M. Brown <\/b> <br> 1832 <br> Milliner; Mantua-Maker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Mariett Ingham; Emily E. Ingham <\/b> <br> 1833 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Susan Ingham <\/b> <br> 1833 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Miss L. Johnson <\/b> <br> 1834 <br> Milliner; Dressmaker <br> Barre, MA <br> Farmer's Gazette","<b> S.T. Bodurtha <\/b> <br> 1835 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Miss Davis; Miss Beckwith <\/b> <br> 1835 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Sarah L. Ackley <\/b> <br> 1835 <br> Milliner; Dressmaker <br> Tyringham, MA <br> Pittsfield Sun","<b> Mary S. Bowe <\/b> <br> 1835 <br> Milliner; Mantua-Maker <br> Chesterfield, MA <br> Hampshire Gazette","<b> Hannah Skinner <\/b> <br> 1835 <br> Tailoress <br> Lowell, MA <br> Lowell Patriot","<b> Miss Davis; Miss Beckwith <\/b> <br> 1836 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Miss Davis; Miss Beckwith <\/b> <br> 1836 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> S.T. Bodurtha <\/b> <br> 1836 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Minerva Pelton <\/b> <br> 1837 <br> Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Ann A. Woodbury <\/b> <br> 1837 <br> Milliner <br> Newburyport, MA <br> Newburyport Morning Herald","<b> E.W. Freeman <\/b> <br> 1837 <br> Milliner; dressmaker <br> Lowell, MA <br> Lowell Patriot","<b> Miss Davis <\/b> <br> 1837 <br> Milliner; Dressmaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Mrs. Julia Jernigan <\/b> <br> 1838 <br> Mantuamaker <br> Pittsfield, MA <br> Pittsfield Sun","<b> Miss Davis <\/b> <br> 1838 <br> Milliner <br> Pittsfield, MA <br> Pittsfield Sun","<b> Mrs. Stevens <\/b> <br> 1838 <br> Milliner <br> Pittsfield, MA <br> Pittsfield Sun","<b> C.E. Taylor <\/b> <br> 1838 <br> Milliner; Dressmaker <br> Amherst, MA <br> Hampshire Gazette","<b> Mrs. Cook <\/b> <br> 1838 <br> Milliner; Dressmaker <br> Lanesborough, MA <br> Pittsfield Sun","<b> Mary C. McFarlin <\/b> <br> 1838 <br> Milliner; Mantuamaker <br> Barre, MA <br> Barre Weekly Gazette","<b> Miss S. Pomroy; Miss F. Stanley <\/b> <br> 1838 <br> Tailoress <br> Northampton, MA <br> Hampshire Gazette","<b> Miss Flint <\/b> <br> 1839 <br> Milliner; Dressmaker <br> Barre, MA <br> Barre Gazette","<b> Miss Flint <\/b> <br> 1839 <br> Milliner; Dressmaker <br> Barre, MA <br> Hampshire Gazette","<b> Sarah D. Richardson <\/b> <br> 1841 <br> Milliner; dressmaker <br> Concord, MA <br> Concord Gazette and Middlesex Yeoman","<b> Miss Winchester <\/b> <br> 1843 <br> Milliner; Dressmaker <br> Worcester, MA <br> Worcester Palladium","<b> Mrs. Towne <\/b> <br> 1844 <br> Store owner <br> Worcester, MA <br> Worcester Palladium","<b> Miss Winchester <\/b> <br> 1846 <br> Milliner; Dressmaker <br> Worcester, MA <br> Worcester Palladium","<b> Miss Winchester <\/b> <br> 1847 <br> Dressmaker <br> Worcester, MA <br> Worcester Palladium","<b> Miss Winchester <\/b> <br> 1847 <br> Milliner; Dressmaker <br> Worcester, MA <br> Worcester Palladium","<b> Abby W. Follansbee <\/b> <br> 1837 <br> Dressmaker <br> Newburyport, MA <br> Newburyport Morning Herald","<b> Mrs. Flint <\/b> <br> 1831 <br> Milliner; Mantua-Maker; apprentices <br> Northampton, MA <br> Hampshire Gazette","<b> Sophronia Lyman <\/b> <br> 1832 <br> Milliner; dressmaker <br> Lowell, MA <br> Middlesex Telegraph and Manufacturers' and Farmers' Advocate","<b> John A. Haskell <\/b> <br> 1834 <br> Tailoress; apprentices <br> Lancaster, MA <br> Massachusetts Spy","<b> John Putney <\/b> <br> 1835 <br> Tailor; tailoress <br> Lowell, MA <br> Lowell Patriot","<b> T. Kimberley <\/b> <br> 1835 <br> Tailoress; apprentices <br> Amherst, MA <br> Hampshire Gazette","<b> Mr. Hudson <\/b> <br> 1836 <br> Tailoress <br> Sturbridge, MA <br> Springfield Republican","<b> E. Maria Parker <\/b> <br> 1839 <br> Milliner; Dressmaker <br> Barre, MA <br> Barre Gazette","<b> A.W. Wait <\/b> <br> 1839 <br> Tailor; apprentices <br> Petersham, MA <br> Barre Gazette","<b> N. Dunham <\/b> <br> 1839 <br> Tailor; tailoress <br> Barre, MA <br> Barre Gazette","<b> Wm. H. Hull <\/b> <br> 1839 <br> Tailoress <br> Barre, MA <br> Hampshire Gazette","<b> Wm. H. Hull <\/b> <br> 1839 <br> Tailoress; apprentices <br> Barre, MA <br> Barre Gazette","<b> Miss S. Osborn; Miss C. Osborn <\/b> <br> 1832 <br> Milliner; Dressmaker; apprentices <br> Northampton, MA <br> Hampshire Gazette","<b> Miss S. Osborn; Miss C. Osborn <\/b> <br> 1833 <br> Milliner; Dressmaker; apprentices <br> Northampton, MA <br> Hampshire Gazette","<b> Stephen Whiting <\/b> <br> 1835 <br> Tailor <br> Petersham, MA <br> Farmer's Gazette","<b> Sarah W. Hathaway <\/b> <br> 1836 <br> Milliner <br> Barre, MA <br> Barre Gazette","<b> F. Kilner <\/b> <br> 1839 <br> Tailoress; apprentices <br> Barre, MA <br> Barre Gazette","<b> Sarah Sanders; Sanders sisters <\/b> <br> 1835 <br> Dressmaker; milliner <br> Lowell, MA <br> Lowell City Directory","<b> Hannah E. Freeman <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Lucina Grover <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Goldthwait P <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Persis Goldthwait <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Sarah R. Parmenter <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Susan Richards <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> Clarissa Corey <\/b> <br> 1844 <br> Tailoress <br> Worcester, MA <br> Worcester City Directory","<b> Lucy R. Pease <\/b> <br> 1844 <br> Tailoress <br> Worcester, MA <br> Worcester City Directory","<b> Mercy Goldthwait <\/b> <br> 1844 <br> Tailoress <br> Worcester, MA <br> Worcester City Directory","<b> Sarah Geer <\/b> <br> 1844 <br> Tailoress <br> Worcester, MA <br> Worcester City Directory","<b> Sophronia Willard <\/b> <br> 1844 <br> Dressmaker <br> Worcester, MA <br> Worcester City Directory","<b> C. Hubbard <\/b> <br> 1833 <br> NA <br> Lowell, MA <br> Lowell Mercury","<b> NA <\/b> <br> 1833 <br> NA <br> Lowell, MA <br> Lowell Observer","<b> NA <\/b> <br> 1833 <br> NA <br> Lowell, MA <br> Lowell Observer","<b> C. Mears <\/b> <br> 1836 <br> NA <br> Lowell, MA <br> Lowell Journal","<b> NA <\/b> <br> 1836 <br> NA <br> Lowell, MA <br> Lowell Courier","<b> Samuel A. Hudson; A.M. Merrick <\/b> <br> 1837 <br> Tailor <br> Sturbridge, MA <br> Massachusetts Spy","<b> Henry C. Gillis <\/b> <br> 1838 <br> NA <br> Lowell, MA <br> Lowell Courier","<b> H.A. Woods <\/b> <br> 1854 <br> NA <br> Groton, MA <br> Railroad Mercury","<b> G.W. Shattuck <\/b> <br> 1859 <br> NA <br> Groton, MA <br> Railroad Mercury","<b> S. Hammond <\/b> <br> 1824 <br> Tailor; milliner; mantuamaker <br> Greenfield, MA <br> NA","<b> Saraphinia P. Young <\/b> <br> 1828 <br> Milliner; dressmaker <br> Athol, MA <br> NA","<b> Mary Ann Foster <\/b> <br> 1836 <br> Milliner; dressmaker <br> Barre, MA <br> NA","<b> Mehitable French <\/b> <br> 1844 <br> Tailoress <br> Templeton, MA <br> NA"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["OSM (default)","Toner","Toner Lite"],[],{"collapsed":false,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[42.0729737170362,42.8109791259677],"lng":[-73.247852896133,-70.8767546382806]},"setView":[[42.2626,-71.8023],8,[]]},"evals":[],"jsHooks":[]}</script>
+
+---
+class: right, middle
+
+## Worcester City Directories
+
+<div id="htmlwidget-3e1b4893a97894fc6207" style="width:60%;height:1112.4px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e1b4893a97894fc6207">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["Stamen.Toner",null,"Toner",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["Stamen.TonerLite",null,"Toner Lite",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[42.2710342180436,42.247797882661,42.2705938196844,42.2707135255893,42.2573610621156,42.2678345788678,42.2700970605001,42.259337889349,42.2640428809134,42.2466958719201,42.2676622562308,42.2637384081768,42.2625605733841,42.2505522521415,42.2617574322437,42.2706432034081,42.2657376063774,42.2594521851625,42.2678115553798,42.270073142895,42.2657102673453,42.265718030378,42.2703913442237,42.2692877412196,42.2656918688524,42.2703766801475,42.2366863262442,42.2576210880891,42.2682490191003,42.2594449449988,42.2693454207904,42.2702264208647,42.291306265591,42.2695010826255,42.2636434028271,42.2577785245939,42.265784390203,42.257663402292,42.259387342793,42.2602366851814,42.2574728838876,42.2691809589662,42.2575233645004,42.2578098639677,42.2467698923724,42.2636085550595,42.2638940015589,42.2678807492791,42.2343439225987,42.2654177494969,42.2701400863292,42.2604584035488,42.244442960642,42.2636713530912,42.2574878411932,42.2704260617335,42.2706420358831,42.2699467312239,42.2702462238405,42.2684092075695,42.2653165574608,42.2705419161517,42.2620236962829,42.2700067389243,42.2693218987897,42.2704912211192,42.2677426068876,42.265919687426,42.2686950715426,42.2692472224007,42.2706322505796,42.2412326231225,42.2703426791844,42.2619994196638,42.2703284289403,42.2638958728774,42.270781640485,42.2696173443846,42.270284669857,42.2681896880265,42.2704977764818,42.2692998496328,42.270281814176,42.2678788998755,42.2660430882821,42.2706015408774],[-71.7996274915332,-71.7898827473721,-71.7993601174526,-71.7991448708388,-71.7969292431706,-71.7982739220109,-71.8000145645745,-71.79811613018,-71.8009616929944,-71.7723032329823,-71.7982307926252,-71.8010456297642,-71.8023980897613,-71.7700478198223,-71.7946598476759,-71.7997088281825,-71.7955248319246,-71.8023031831032,-71.7982258349868,-71.7999107497457,-71.7919121192411,-71.7955069041624,-71.7995935690555,-71.7996020277338,-71.7920717450033,-71.8007690244285,-71.8299375179888,-71.7980393635602,-71.801172078483,-71.8023681466118,-71.7994433801355,-71.8000967297177,-71.7820808852915,-71.7982045476835,-71.8009773405338,-71.7979771102036,-71.7954355647358,-71.7981176268994,-71.7957579869605,-71.8008118915491,-71.7970459646379,-71.7975744524665,-71.7968234939496,-71.7979975899385,-71.7722117175879,-71.8011123388827,-71.800840899942,-71.7984086202704,-71.8406212080456,-71.7919523869866,-71.7996470938455,-71.8008207219454,-71.8365107214638,-71.8009076361164,-71.7970688850921,-71.7997909126856,-71.7997630862041,-71.7991942563884,-71.7998048985275,-71.8011733988327,-71.79218140398,-71.7995936988941,-71.798629661097,-71.7992769475312,-71.7992439527645,-71.7999042276437,-71.7984104506252,-71.7956296132593,-71.7980820571726,-71.7976204801927,-71.7991772891311,-71.86542410727,-71.7997275198872,-71.7988391312117,-71.7996268452696,-71.8010841257601,-71.7995114525268,-71.799279453453,-71.7998809081213,-71.8009314855758,-71.7996515151315,-71.7995476649819,-71.8001213364511,-71.7982252363542,-71.795613343184,-71.7993761128456],6,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":2,"opacity":0.5,"fill":true,"fillColor":["blueviolet","lightgreen","blueviolet","blueviolet","lightskyblue","lightskyblue","lightskyblue","lightskyblue","yellow","yellow","yellow","yellow","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","yellow","yellow","yellow","yellow","yellow","yellow","yellow","yellow","yellow","yellow","yellow","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","lightskyblue","yellow","yellow","yellow","purple","purple","purple","purple","purple","purple","purple","purple","purple","purple","purple","purple"],"fillOpacity":0.5},null,null,["<b> Miss Winchester <\/b> <br> 1843 <br> Milliner; Dressmaker <br> 27 Main Street, Worcester, MA <br> Worcester Palladium","<b> Mrs. Towne <\/b> <br> 1844 <br> Store owner <br> 7 Granite Block, Worcester, MA <br> Worcester Palladium","<b> Miss Winchester <\/b> <br> 1846 <br> Milliner; Dressmaker <br> 47 Main Street, Worcester, MA <br> Worcester Palladium","<b> Miss Winchester <\/b> <br> 1847 <br> Milliner; Dressmaker <br> 47 Main Street, Worcester, MA <br> Worcester Palladium","<b> Goldthwait P <\/b> <br> 1844 <br> Dressmaker <br> Brown St/Pond St, Worcester, MA <br> Worcester City Directory","<b> Persis Goldthwait <\/b> <br> 1844 <br> Dressmaker <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> Sarah R. Parmenter <\/b> <br> 1844 <br> Dressmaker <br> 78 Main St, Worcester, MA <br> Worcester City Directory","<b> Susan Richards <\/b> <br> 1844 <br> Dressmaker <br> 14 Green St, Worcester, MA <br> Worcester City Directory","<b> Clarissa Corey <\/b> <br> 1844 <br> Tailoress <br> Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Lucy R. Pease <\/b> <br> 1844 <br> Tailoress <br> Corner of Mechanic and Short Streets, Worcester, MA <br> Worcester City Directory","<b> Mercy Goldthwait <\/b> <br> 1844 <br> Tailoress <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> Sarah Geer <\/b> <br> 1844 <br> Tailoress <br> Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Sophronia Willard <\/b> <br> 1844 <br> Dressmaker <br> Hind's Court, Worcester, MA <br> Worcester City Directory","<b> Mary Davis <\/b> <br> 1844 <br> Dressmaker <br> Grafton St., Worcester, MA <br> Worcester City Directory","<b> Miss Drury <\/b> <br> 1844 <br> Dressmaker <br> Washington Square, Worcester, MA <br> Worcester City Directory","<b> Mrs. Felton <\/b> <br> 1844 <br> Dressmaker <br> 57 Main St, Worcester, MA <br> Worcester City Directory","<b> Sally Flagg <\/b> <br> 1844 <br> Dressmaker <br> Summer St, Worcester, MA <br> Worcester City Directory","<b> Hannah E. Freeman <\/b> <br> 1844 <br> Dressmaker <br> Myrtle St, Worcester, MA <br> Worcester City Directory","<b> Persis Goldthwait <\/b> <br> 1844 <br> Dressmaker <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> E. Goodale <\/b> <br> 1844 <br> Dressmaker <br> 93 Main St, Worcester, MA <br> Worcester City Directory","<b> S.E. Hart <\/b> <br> 1844 <br> Dressmaker <br> Central St, Worcester, MA <br> Worcester City Directory","<b> Harriet Howland <\/b> <br> 1844 <br> Dressmaker <br> Summer St, Worcester, MA <br> Worcester City Directory","<b> D. Hunter <\/b> <br> 1844 <br> Dressmaker <br> 85 Main St, Worcester, MA <br> Worcester City Directory","<b> Lydia A. Jencks <\/b> <br> 1844 <br> Dressmaker <br> 147 Main, Worcester, MA <br> Worcester City Directory","<b> Elizabeth C. Kinney <\/b> <br> 1844 <br> Dressmaker <br> Central St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Lawrence <\/b> <br> 1844 <br> Dressmaker <br> 94 Main St, Worcester, MA <br> Worcester City Directory","<b> Lucretia Larnard <\/b> <br> 1844 <br> Dressmaker <br> Pine St, Worcester, MA <br> Worcester City Directory","<b> Sally Morse <\/b> <br> 1844 <br> Dressmaker <br> Green St, Worcester, MA <br> Worcester City Directory","<b> Nancy Muzzy <\/b> <br> 1844 <br> Dressmaker <br> 164 Main St, Worcester, MA <br> Worcester City Directory","<b> Louisa Newton <\/b> <br> 1844 <br> Dressmaker <br> Myrtle St, Worcester, MA <br> Worcester City Directory","<b> M. Orcutt <\/b> <br> 1844 <br> Dressmaker <br> 127 Main St, Worcester, MA <br> Worcester City Directory","<b> Sarah R. Parmenter <\/b> <br> 1844 <br> Dressmaker <br> 78 Main St, Worcester, MA <br> Worcester City Directory","<b> Jane Puffer <\/b> <br> 1844 <br> Dressmaker <br> Lincoln St, Worcester, MA <br> Worcester City Directory","<b> Elizabeth Rice <\/b> <br> 1844 <br> Dressmaker <br> Union St, Worcester, MA <br> Worcester City Directory","<b> N. Reed <\/b> <br> 1844 <br> Dressmaker <br> Corner of Short St and Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Susan Richards <\/b> <br> 1844 <br> Dressmaker <br> Green St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Riley <\/b> <br> 1844 <br> Dressmaker <br> Summer St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Thomas Rogers <\/b> <br> 1844 <br> Dressmaker <br> Green St, Worcester, MA <br> Worcester City Directory","<b> M.S. Ruggles <\/b> <br> 1844 <br> Dressmaker <br> Temple St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Shumway <\/b> <br> 1844 <br> Dressmaker <br> Salem St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Benoni Smith <\/b> <br> 1844 <br> Dressmaker <br> Pond St, Worcester, MA <br> Worcester City Directory","<b> Mary Smith <\/b> <br> 1844 <br> Dressmaker <br> Old Market St, Worcester, MA <br> Worcester City Directory","<b> Harriet Wheeler <\/b> <br> 1844 <br> Dressmaker <br> Pond St near Winter, Worcester, MA <br> Worcester City Directory","<b> Sophronia Willard <\/b> <br> 1844 <br> Dressmaker <br> Green St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Clarissa Corey <\/b> <br> 1844 <br> Tailoress <br> Short St, Worcester, MA <br> Worcester City Directory","<b> Servilla Colman <\/b> <br> 1844 <br> Tailoress <br> Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Sarah A. Geer <\/b> <br> 1844 <br> Tailoress <br> Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Mercy Goldthwait <\/b> <br> 1844 <br> Tailoress <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> Sarah P. Howard <\/b> <br> 1844 <br> Tailoress <br> Park St, Worcester, MA <br> Worcester City Directory","<b> S. Howard <\/b> <br> 1844 <br> Tailoress <br> Central St, Worcester, MA <br> Worcester City Directory","<b> Miss Howard <\/b> <br> 1844 <br> Tailoress <br> 83 Main St, Worcester, MA <br> Worcester City Directory","<b> Miss Johnson <\/b> <br> 1844 <br> Tailoress <br> Salem St, Worcester, MA <br> Worcester City Directory","<b> Louisa A. Miller <\/b> <br> 1844 <br> Tailoress <br> Main St, Worcester, MA <br> Worcester City Directory","<b> Lucy R. Pease <\/b> <br> 1844 <br> Tailoress <br> Corner of Short St and Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Jonathan Rice <\/b> <br> 1844 <br> Tailoress <br> Pond St near Green, Worcester, MA <br> Worcester City Directory","<b> Mrs. Baker <\/b> <br> 1842 <br> Dressmaker <br> 71 Main St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Felton <\/b> <br> 1842 <br> Dressmaker <br> 57 Main St, Worcester, MA <br> Worcester City Directory","<b> Misses Goldthwait <\/b> <br> 1842 <br> Dressmaker <br> 107 Main St, Worcester, MA <br> Worcester City Directory","<b> E. Goodale <\/b> <br> 1842 <br> Dressmaker <br> 93 Main St, Worcester, MA <br> Worcester City Directory","<b> H.M. Haynes <\/b> <br> 1842 <br> Dressmaker <br> 164 Main St, Worcester, MA <br> Worcester City Directory","<b> S.E. Hart <\/b> <br> 1842 <br> Dressmaker <br> Central St, Worcester, MA <br> Worcester City Directory","<b> Dolly Hunter <\/b> <br> 1842 <br> Dressmaker <br> 85 Main St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Lawrence <\/b> <br> 1842 <br> Dressmaker <br> Front St, Worcester, MA <br> Worcester City Directory","<b> Miss Muzzy <\/b> <br> 1842 <br> Dressmaker <br> Lincoln Square, Worcester, MA <br> Worcester City Directory","<b> M. Orcutt <\/b> <br> 1842 <br> Dressmaker <br> 127 Main St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Parmenter <\/b> <br> 1842 <br> Dressmaker <br> 78 Main St, Worcester, MA <br> Worcester City Directory","<b> M.A. Perry & Co. <\/b> <br> 1842 <br> Dressmaker <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> A.E. Pollard <\/b> <br> 1842 <br> Dressmaker <br> Summer St, Worcester, MA <br> Worcester City Directory","<b> Mary E. Rice <\/b> <br> 1842 <br> Dressmaker <br> School St, Worcester, MA <br> Worcester City Directory","<b> M.J. Walcott <\/b> <br> 1842 <br> Dressmaker <br> Market St, Worcester, MA <br> Worcester City Directory","<b> F. Winchester <\/b> <br> 1842 <br> Dressmaker <br> 47 Main St, Worcester, MA <br> Worcester City Directory","<b> S. Howard <\/b> <br> 1842 <br> Tailoress <br> 21 Main St, Worcester, MA <br> Worcester City Directory","<b> L.A. Miller <\/b> <br> 1842 <br> Tailoress <br> 83 Main St, Worcester, MA <br> Worcester City Directory","<b> Miss Rich <\/b> <br> 1842 <br> Tailoress <br> Front St, Worcester, MA <br> Worcester City Directory","<b> Mr. Baker <\/b> <br> 1842 <br> Milliner <br> 71 Main St, Worcester, MA <br> Worcester City Directory","<b> Eliza Duncan <\/b> <br> 1842 <br> Milliner <br> Mechanic St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Felton <\/b> <br> 1842 <br> Milliner <br> 57 Main St, Worcester, MA <br> Worcester City Directory","<b> Misses Goldthwait <\/b> <br> 1842 <br> Milliner <br> 107 Main St, Worcester, MA <br> Worcester City Directory","<b> E. Goodale <\/b> <br> 1842 <br> Milliner <br> 93 Main St, Worcester, MA <br> Worcester City Directory","<b> H.M. Haynes <\/b> <br> 1842 <br> Milliner <br> 164 Main St, Worcester, MA <br> Worcester City Directory","<b> Dolly Hunter <\/b> <br> 1842 <br> Milliner <br> 85 Main St, Worcester, MA <br> Worcester City Directory","<b> M. Orcutt <\/b> <br> 1842 <br> Milliner <br> 127 Main St, Worcester, MA <br> Worcester City Directory","<b> Mrs. Parmenter <\/b> <br> 1842 <br> Milliner <br> 78 Main St, Worcester, MA <br> Worcester City Directory","<b> Mary Ann Perry & Co. <\/b> <br> 1842 <br> Milliner <br> Thomas St, Worcester, MA <br> Worcester City Directory","<b> A.E. Pollard <\/b> <br> 1842 <br> Milliner <br> Summer St, Worcester, MA <br> Worcester City Directory","<b> F. Winchester <\/b> <br> 1842 <br> Milliner <br> 47 Main St, Worcester, MA <br> Worcester City Directory"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["OSM (default)","Toner","Toner Lite"],[],{"collapsed":false,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[42.2343439225987,42.291306265591],"lng":[-71.86542410727,-71.7700478198223]},"setView":[[42.2626,-71.8023],8,[]]},"evals":[],"jsHooks":[]}</script>
+
+---
+class: right, middle
+
+## Seamstresses with Genealogy Information
+
+<div id="htmlwidget-cd120c03e074e5baa907" style="width:60%;height:1112.4px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cd120c03e074e5baa907">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["Stamen.Toner",null,"Toner",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["Stamen.TonerLite",null,"Toner Lite",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[42.392911193346,42.447240497947,42.0773194621218,42.2696382679399,42.2740471834493,42.2563880990699,42.686617164846,42.2590267613948,42.242304378149,42.2290777103117,42.2250843537695,42.27138427256,42.4186615842359,42.2548390797378,42.8050998722945,42.8098069909162,42.2999927058995,42.2651146121499,42.2713772501351,42.2671688648011],[-72.843050927351,-73.2511859201933,-72.0348538738879,-71.7978171523705,-71.7988916393654,-71.7995366184606,-72.0714465918617,-71.8025061243893,-71.7745426830815,-72.730939476424,-72.7284780997927,-71.8031626093027,-71.6742561466187,-71.8001171233194,-70.8651366377612,-70.8664846915318,-73.2497579891775,-71.7969847405659,-71.7973742489651,-71.7996727162895],6,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":2,"opacity":0.5,"fill":true,"fillColor":"#9cc1d1","fillOpacity":0.75},null,null,["<b> Mary W. Lee Bissell <\/b> <br> Birth Date:  1796 <br> Parents:  NA  and  NA <br> Spouse:  Benjamin Pierce Bissell <br> Marriage Date:  NA <br> Address:  Chesterfield, MA <br> Death Date:  13 April 1846 <br><img src= https://i.pinimg.com/564x/1c/37/19/1c3719c73f27a120022f80dd0c33727f.jpg  width = '200'>","<b> Julia Ann Hurlburt Jernigan <\/b> <br> Birth Date:  13 August 1798 <br> Parents:  Timothy Hurlburt  and  Mary Robbins Hurlburt <br> Spouse:  Ryan Jernigan? <br> Marriage Date:  NA <br> Address:  38 Pomeroy Ave, Pittsfield, MA <br> Death Date:  3 November 1885 <br><img src= https://i.pinimg.com/474x/ec/4d/e2/ec4de2bbc251a67ad02247dc94acb7af.jpg  width = '200'>","<b> Sally Litchfield Whitney <\/b> <br> Birth Date:  6 October 1806 <br> Parents:  Comins Litchfield  and  Sally Blanchard <br> Spouse:  Schuyler Whitney <br> Marriage Date:  23 October 1828 <br> Address:  Southbridge, MA <br> Death Date:  26 April 1879 <br><img src= https://i.pinimg.com/474x/ff/41/14/ff4114affb25efe694b3e7d852719c8c.jpg  width = '200'>","<b> Dolly Hunter McMarty? McMurter? <\/b> <br> Birth Date:  29 May 1807 <br> Parents:  Isaac Hunter  and  Lucy Converse Hunter <br> Spouse:  Merit McMurter? McMarty? <br> Marriage Date:  15 August 1857 <br> Address:  85 Main St, Worcester, MA <br> Death Date:  5 September 1874 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Lydia A. Jencks <\/b> <br> Birth Date:  NA <br> Parents:  NA  and  NA <br> Spouse:  NA <br> Marriage Date:  NA <br> Address:  147 Main St, Worcester, MA <br> Death Date:  NA <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Susan M. Richards Pratt <\/b> <br> Birth Date:  1819 <br> Parents:  Reuban Richards  and  Polly Richards <br> Spouse:  Almon Pratt <br> Marriage Date:  19 October 1856 <br> Address:  14 Green St, Worcester, MA <br> Death Date:  NA <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Lucy Lane Johnson Smith <\/b> <br> Birth Date:  24 April 1792 <br> Parents:  John Johnson  and  Lydia Johnson <br> Spouse:  Benoni Smith <br> Marriage Date:  20 September 1820 <br> Address:  Brown St, Worcester, MA <br> Death Date:  24 February 1884 <br><img src= https://i.pinimg.com/564x/06/95/cd/0695cdc820a53abb06cd1c04ea5bfab6.jpg  width = '200'>","<b> Sarah \"Sally\" Geer Driscoll <\/b> <br> Birth Date:  28 October 1821 <br> Parents:  Asa Geer  and  Esther Smith Geer <br> Spouse:  Alonzo M. Driscoll <br> Marriage Date:  11 September 1846 <br> Address:  Mechanic St, Worcester, MA <br> Death Date:  9 April 1889 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Clarissa D. Baker Corey/Cory <\/b> <br> Birth Date:  NA <br> Parents:  NA  and  NA <br> Spouse:  Joseph Cory <br> Marriage Date:  10 November 1844 <br> Address:  Short St, Worcester, MA <br> Death Date:  1894 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Clarissa Nash Trumbull <\/b> <br> Birth Date:  21 March 1793 <br> Parents:  John Nash  and  Martha Nash <br> Spouse:  x Trumbull <br> Marriage Date:  NA <br> Address:  Southampton, MA <br> Death Date:  26 July 1873 <br><img src= https://i.pinimg.com/564x/0e/12/99/0e12994bd1de21a447b86bad3d44bdff.jpg  width = '200'>","<b> Mary Ann Nash Kingsley <\/b> <br> Birth Date:  1812 <br> Parents:  John Nash  and  Abigail Nash <br> Spouse:  Edwin Kingsley <br> Marriage Date:  1854 <br> Address:  Southampton, MA <br> Death Date:  29 January 1890 <br><img src= https://i.pinimg.com/564x/0e/12/99/0e12994bd1de21a447b86bad3d44bdff.jpg  width = '200'>","<b> Relief Smith Felton <\/b> <br> Birth Date:  1795 <br> Parents:  NA  and  NA <br> Spouse:  Josiah D. Felton <br> Marriage Date:  6 November 1816 <br> Address:  57 Main St, Worcester, MA <br> Death Date:  1867 <br><img src= https://i.pinimg.com/564x/11/ea/27/11ea27bed0689dfb9cd1f55747734d26.jpg  width = '200'>","<b> Lucina Grover Dolliver <\/b> <br> Birth Date:  October 1818 <br> Parents:  Lemuel Grover  and  Philena Grover <br> Spouse:  Horatio Dolliver <br> Marriage Date:  17 February 1847 <br> Address:  Beech St, Worcester, MA <br> Death Date:  23 December 1853 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Sophronia Willard Lowd <\/b> <br> Birth Date:  22 February 1798 <br> Parents:  William Willard  and  Sarah Willard <br> Spouse:  George W. Lowd <br> Marriage Date:  8 January 1846 <br> Address:  26 Green St, Worcester, MA <br> Death Date:  16 September 1856 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Abby White Follansbee <\/b> <br> Birth Date:  1808 <br> Parents:  John N. Follansbee  and  Abby White <br> Spouse:  NA <br> Marriage Date:  NA <br> Address:  17 Ship St, Newburyport, MA <br> Death Date:  29 July 1876 <br><img src= https://i.pinimg.com/564x/90/cd/b8/90cdb844303cb22f904c5af290840220.jpg  width = '200'>","<b> Ann A. Woodbury Knapp <\/b> <br> Birth Date:  1816 <br> Parents:  Eliphalet Woodbury  and  Abigail Woodbury <br> Spouse:  Isaac Knapp <br> Marriage Date:  22 June 1841 <br> Address:  11 Beck St, Newburyport, MA <br> Death Date:  2 April 1894 <br><img src= https://i.pinimg.com/564x/84/ae/c5/84aec5bccbd5bba4a2e961cb29526aab.jpg  width = '200'>","<b> Sarah L. Ackley Baker <\/b> <br> Birth Date:  1803 <br> Parents:  Abihu (Elihu) Ackley  and  Anne Weir <br> Spouse:  David Baker Jr. <br> Marriage Date:  3 September 1842 <br> Address:  Lee, MA <br> Death Date:  NA <br><img src= https://i.pinimg.com/originals/63/41/5f/63415fe5bef25ed1a9d6de9845cbff0a.jpg  width = '200'>","<b> Persis Gates Goldthwait <\/b> <br> Birth Date:  18 November 1816 <br> Parents:  Nathan Goldthwait  and  Persis Goldthwait <br> Spouse:  NA <br> Marriage Date:  NA <br> Address:  Thomas St, Worcester, MA <br> Death Date:  7 June 1882 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Mercy Taft Goldthwait <\/b> <br> Birth Date:  17 April 1814 <br> Parents:  Nathan Goldthwait  and  Persis Goldthwait <br> Spouse:  NA <br> Marriage Date:  NA <br> Address:  Thomas St, Worcester, MA <br> Death Date:  22 February 1847 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>","<b> Sarah Rainsford Slater Parmenter Howe <\/b> <br> Birth Date:  11 February 1796 <br> Parents:  Peter Slater  and  Zilpah Slater <br> Spouse:  Roswell Parmenter (1st); Artemas Howe (2nd) <br> Marriage Date:  9 October 1816; 15 August 1850 <br> Address:  78 Main St, Worcester, MA <br> Death Date:  30 April 1872 <br><img src= https://i.pinimg.com/474x/45/68/c3/4568c3294167aa7b6443fdd7ae6674ec.jpg  width = '200'>"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["OSM (default)","Toner","Toner Lite"],[],{"collapsed":false,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[42.0773194621218,42.8098069909162],"lng":[-73.2511859201933,-70.8651366377612]},"setView":[[42.2626,-71.8023],8,[]]},"evals":[],"jsHooks":[]}</script>
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
