@@ -171,7 +171,7 @@ include_graphics("https://i.pinimg.com/564x/c6/3f/79/c63f7952e1e7b8f42920bf34b9a
 
 --
 .pull-right[
-```{r cloyes-transcript, echo=FALSE, fig.align='middle', out.width='80%'}
+```{r cloyes-transcript, echo=FALSE, fig.align='middle', out.width='90%'}
 include_graphics("https://i.pinimg.com/564x/89/3b/2b/893b2b2487c4e133c7d2d87c7a63f612.jpg")
 ```
 ]
@@ -198,7 +198,7 @@ class: left, top
 --
 
 .pull-right[
-```{r spreadsheet, echo=FALSE, fig.align='middle', out.width="100%"}
+```{r spreadsheet, echo=FALSE, fig.align='left', out.width="120%"}
 include_graphics("https://i.pinimg.com/originals/85/aa/52/85aa52e6376fcbfeda5ec72b3a7fc6e9.jpg")
 ```
 ]
@@ -228,7 +228,7 @@ class: left, top
 
 .pull-right[
 
-```{r vital-records, echo=FALSE, fig.align='center', out.width='50%'}
+```{r vital-records, echo=FALSE, fig.align='top', out.width='70%'}
 knitr::include_graphics(
   "https://i.pinimg.com/564x/41/3b/c6/413bc64ac5be4f9c0fcce274a0ef341c.jpg")
 ```
@@ -288,7 +288,7 @@ class: center, middle
 # Part 2 <br> Who?
 
 ---
-class: top, middle
+class: top, center
 
 ## Age at Time of Advertisement
 
@@ -304,7 +304,7 @@ ages %>%
 ```
 
 ---
-class: top, middle
+class: top, center
 
 ## Age at Marriage
 
@@ -320,7 +320,7 @@ marriages %>%
 ```
 
 ---
-class: top, middle
+class: top, center
 
 ## Which comes first?
 
@@ -342,37 +342,40 @@ class: top, center
 
 ```{r job-titles, echo=FALSE, warning=FALSE, out.width = "75%", fig.align = "center"}
 
-ggplot(seamstresses_separated) +
-  geom_bar(mapping = aes(x = job_title), na.rm = TRUE) +
-  coord_flip() +
-  labs(x = "Job Title",
-       y = "Number") +
-  theme_standard +
-  theme_xaringan()
+seamstresses_separated %>% 
+  filter(is.na(job_title) == FALSE) %>% 
+  ggplot() +
+    geom_bar(mapping = aes(x = job_title), na.rm = TRUE) +
+    coord_flip() +
+    labs(x = "Job Title",
+         y = "Number") +
+    theme_standard +
+    theme_xaringan()
 ```
+
 ---
 class: top, center
  
 ## What is...
 
 --
-.pull_left[
 
 A Milliner?
 
-]
-
 --
-
 
 A Tailoress?
 
 --
-.pull_right[
 
 A Mantuamaker?
 
-]
+--
+
+```{r mantua-image, echo=FALSE, warning=FALSE, out.width = '25%', fig.align = 'center'}
+include_graphics("https://images.metmuseum.org/CRDImages/ci/original/DT6542.jpg")
+```
+
 
 ---
 class: top, center
@@ -402,7 +405,7 @@ class: center, middle
 ### The Map Section
  
 ---
-class: top, middle, inverse
+class: top, center, inverse
 background-color: #FFFFFF
 
 ## Ads per Town
@@ -426,12 +429,12 @@ ggplot(data = map_data) +
 ```
 
 ---
-class: top, left, inverse
+class: top, center, inverse
 background-color: #FFFFFF
 
 ## Job Title Popularity by Town
 
-```{r job-title-map, echo=FALSE, warning=FALSE, out.width='90%', fig.align='middle'}
+```{r job-title-map, echo=FALSE, warning=FALSE, out.width='90%', fig.align='top'}
 ggplot(job_title_popularity) +
   geom_sf(aes(geometry = geometry, fill = job_title)) +
   scale_fill_manual(values = c("Apprentices" = "#dbaca4", "Dressmaker" = "#9cc1d1", "Mantuamaker" = "#ebdc73", "Milliner" = "#cddec5", "Tailor" = "#6d6755", "Tailoress" = "#88a185"), na.value = "#f8f3d4") +
@@ -459,7 +462,7 @@ class: center, middle
 ## All Massachusetss Seamstresses
 ---
 
-```{r ma-leaflet-map, echo=FALSE, warning=FALSE, out.width='100%', fig.align='middle'}
+```{r ma-leaflet-map, echo=FALSE, warning=FALSE, out.width='100%', fig.align='center'}
 
 ma_map <- leaflet(data = ma_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -488,7 +491,7 @@ ma_map <- leaflet(data = ma_geo) %>%
     baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
     options = layersControlOptions(collapsed = FALSE)
   ) %>% 
-  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+  setView(lat = 41.451505, lng = -71.781327, zoom = 8)
 
 ma_map
 ```
@@ -499,7 +502,7 @@ class: center, middle
 ## Worcester City Directories
 
 ---
-```{r worcester-map, echo=FALSE, warning=FALSE, out.width='100%', fig.align='middle'}
+```{r worcester-map, echo=FALSE, warning=FALSE, out.width='85%', fig.align='center'}
 
 worcester_map <- leaflet(data = worcester_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -528,7 +531,7 @@ worcester_map <- leaflet(data = worcester_geo) %>%
     baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
     options = layersControlOptions(collapsed = FALSE)
   ) %>% 
-  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+  setView(lat = 41.451505, lng = -71.781327, zoom = 8)
 
 worcester_map
 
@@ -540,7 +543,7 @@ class: center, middle
 ## Seamstresses with Genealogy Information
 
 ---
-```{r genealogy-map, echo=FALSE, warning=FALSE, out.width='100%', fig.align='center'}
+```{r genealogy-map, echo=FALSE, warning=FALSE, out.width='85%', fig.align='center'}
 
 genealogy_map <- leaflet(data = genealogy_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -558,12 +561,15 @@ genealogy_map <- leaflet(data = genealogy_geo) %>%
     baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
     options = layersControlOptions(collapsed = FALSE)
   ) %>% 
-  setView(lat = 42.2626, lng = -71.8023, zoom = 8)
+  setView(lat = 41.451505, lng = -71.781327, zoom = 8)
 
 genealogy_map
 ```
 ---
 class: inverse, left, middle
+background-image: url("https://i.pinimg.com/564x/46/e1/ae/46e1ae98ac90c4ebc431884e44221940.jpg")
+background-position: right, top
+background-size: 50%
 
 ## Conclusions
 
