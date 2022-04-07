@@ -372,7 +372,7 @@ A Mantuamaker?
 
 --
 
-```{r mantua-image, echo=FALSE, warning=FALSE, out.width = '25%', fig.align = 'center'}
+```{r mantua-image, echo=FALSE, warning=FALSE, out.width = '10%', fig.align = 'center'}
 include_graphics("https://images.metmuseum.org/CRDImages/ci/original/DT6542.jpg")
 ```
 
