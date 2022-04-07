@@ -13,7 +13,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
----
+--- 
 
 ```{r load-packages, include = FALSE}
 # Add any additional packages you need to this chunk
@@ -205,6 +205,9 @@ include_graphics("https://i.pinimg.com/originals/85/aa/52/85aa52e6376fcbfeda5ec7
 ---
 
 class: left, top
+background-image: url("https://i.pinimg.com/564x/41/3b/c6/413bc64ac5be4f9c0fcce274a0ef341c.jpg")
+background-position: right 75px top 90px
+background-size: 30%
 
 ## Digitization
 
@@ -222,16 +225,6 @@ class: left, top
 - Death location
 - Addresses
 - Relatives 
-]
-
---
-
-.pull-right[
-
-```{r vital-records, echo=FALSE, fig.align='top', out.width='70%'}
-knitr::include_graphics(
-  "https://i.pinimg.com/564x/41/3b/c6/413bc64ac5be4f9c0fcce274a0ef341c.jpg")
-```
 ]
 
 ---
@@ -372,7 +365,7 @@ A Mantuamaker?
 
 --
 
-```{r mantua-image, echo=FALSE, warning=FALSE, out.width = '10%', fig.align = 'center'}
+```{r mantua-image, echo=FALSE, warning=FALSE, out.width = '20%', fig.align = 'center'}
 include_graphics("https://images.metmuseum.org/CRDImages/ci/original/DT6542.jpg")
 ```
 
@@ -477,11 +470,13 @@ ma_map <- leaflet(data = ma_geo) %>%
                       job_title == "Store owner" ~ "lightgreen",
                       job_title == "Milliner; Dressmaker" ~ "blueviolet",
                       job_title == "Milliner; dressmaker" ~ "blueviolet",
+                      job_title == "Dressmaker; milliner" ~ "blueviolet",
                       job_title == "Tailor" ~ "blue",
                       job_title == "Milliner; mantuamaker" ~ "magenta",
                       job_title == "Milliner; Mantua-Maker" ~ "magenta",
                       job_title == "Mantuamaker; Milliner" ~ "magenta",
-                      job_title == "Tailoress; apprentices" ~ "orange"),
+                      job_title == "Tailoress; apprentices" ~ "orange",
+                      job_title == "Tailor; tailoress" ~ "darkseagreen3"),
     color = "black",
     stroke = TRUE, 
     weight = 2,
@@ -517,11 +512,13 @@ worcester_map <- leaflet(data = worcester_geo) %>%
                       job_title == "Store owner" ~ "lightgreen",
                       job_title == "Milliner; Dressmaker" ~ "blueviolet",
                       job_title == "Milliner; dressmaker" ~ "blueviolet",
+                      job_title == "Dressmaker; milliner" ~ "blueviolet",
                       job_title == "Tailor" ~ "blue",
                       job_title == "Milliner; mantuamaker" ~ "magenta",
                       job_title == "Milliner; Mantua-Maker" ~ "magenta",
                       job_title == "Mantuamaker; Milliner" ~ "magenta",
-                      job_title == "Tailoress; apprentices" ~ "orange"),
+                      job_title == "Tailoress; apprentices" ~ "orange",
+                      job_title == "Tailor; tailoress" ~ "darkseagreen3"),
     color = "black",
     stroke = TRUE, 
     weight = 2,
@@ -531,7 +528,7 @@ worcester_map <- leaflet(data = worcester_geo) %>%
     baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
     options = layersControlOptions(collapsed = FALSE)
   ) %>% 
-  setView(lat = 41.451505, lng = -71.781327, zoom = 8)
+  setView(lat = 42.171, lng = -71.796, zoom = 11)
 
 worcester_map
 
@@ -581,7 +578,7 @@ class: top, left
 --
 .pull_left[
 
-- Professional sewing was a young women's field.
+- Professional sewing was not only a young women's field.
 ]
 
 --
