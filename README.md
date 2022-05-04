@@ -2,13 +2,13 @@
 
 An exploration of women in the needle trades in New England from 1790-1850.
 
-# Presentation
+## Presentation
 
 Access the [presentation](Presentation.html)
 
-# Codebooks
+## Codebooks
 
-## seamstresses
+### seamstresses
 
 14 columns, 100 rows
 
@@ -27,7 +27,7 @@ Access the [presentation](Presentation.html)
 * `ad_id`: a unique ID assigned to each individual ad; typically the advertiser's last name, except for the Worcester City Directory listings, which are all "Worcester1844"
 * `name_id`: an ID assigned to each individual; typically the advertiser's last name, and first initial if needed. 
 
-## genealogy
+### genealogy
 
 20 columns, 31 rows
 
