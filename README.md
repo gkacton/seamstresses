@@ -6,6 +6,10 @@ An exploration of women in the needle trades in New England from 1790-1850.
 
 Access the [presentation](Presentation.html)
 
+## Maps
+
+View a selection of [maps](Maps.html)
+
 ## Codebooks
 
 ### seamstresses
