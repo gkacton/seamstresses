@@ -7,7 +7,7 @@ output: html_document
 
 ## Libraries
 
-```{r load-packages, message=FALSE}
+```{r load-packages, echo=FALSE}
 
 library(tidyverse) ## For plotting and data wrangling.
 
@@ -35,7 +35,8 @@ job_title_popularity <- read_csv("data/job_titles_cleaned.csv")
 
 ## Base Map
 
-```{r ggplot-map, message=FALSE}
+```{r ggplot-map, echo=FALSE}
+
 ggplot(data = map_data) +
   geom_sf(aes(geometry = geometry, fill = number)) +
   scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
@@ -47,7 +48,7 @@ ggplot(data = map_data) +
 ```
 ## Regionality of Job Titles
 
-```{r job-title-map, message=FALSE}
+```{r job-title-map, echo=FALSE}
 ggplot(job_title_popularity) +
   geom_sf(aes(geometry = geometry, fill = job_title)) +
   scale_fill_manual(values = c("Apprentices" = "lightpink", "Dressmaker" = "lightskyblue", "Mantuamaker" = "lightgoldenrod", "Milliner" = "thistle", "Tailor" = "lightslategray", "Tailoress" = "darkseagreen1"), na.value = "white") +
@@ -57,7 +58,7 @@ ggplot(job_title_popularity) +
   theme_void()
 ```
 
-```{r worcester-map, message=FALSE}
+```{r worcester-map, echo=FALSE}
 
 worcester_map <- leaflet(data = worcester_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -93,7 +94,7 @@ worcester_map
 
 ## Locations of all Points in Seamstress Set
 
-```{r ma-leaflet-map, message=FALSE}
+```{r ma-leaflet-map, echo = FALSE}
 
 ma_map <- leaflet(data = ma_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -126,8 +127,7 @@ ma_map <- leaflet(data = ma_geo) %>%
 ma_map
 ```
 
-
-```{r make-genealogy-map, message=FALSE}
+```{r make-genealogy-map, echo=FALSE}
 
 genealogy_map <- leaflet(data = genealogy_geo) %>% 
   addTiles(group = "OSM") %>%
