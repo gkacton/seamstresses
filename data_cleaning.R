@@ -21,6 +21,7 @@ seamstresses <- read_csv("data/seamstresses.csv")
 genealogy <- read_csv("data/genealogy.csv")
 worcester_directory <- read_csv("data/worcester.csv")
 ad_links <- read_csv("data/ad_links.csv")
+api_key <- google_api_key
 
 # Worcester City Directory in Seamstresses Sheet ------------------------------
 
@@ -196,7 +197,6 @@ job_title_popularity <- seamstresses %>%
   write_csv("data/job_titles_cleaned.csv")
 
 # Geocode Worcester Sheet
-register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
 
 worcester_geo <- worcester %>% 
   mutate_geocode(location = street_address, 
@@ -233,8 +233,6 @@ seamstresses_ma <- seamstresses %>%
                           TRUE ~ city)) %>% 
   mutate(city_state = paste(city, state, sep = ", ")) 
 
-register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
-
 ma_geo <- seamstresses_ma %>% 
   mutate_geocode(location = city_state, 
                  output = "latlon", 
@@ -268,8 +266,6 @@ genealogy_data <- genealogy %>%
                                  "<br> Address: ", street_address,
                                  "<br> Death Date: ", death_date,
                                  "<br><img src=",ad_image," width = '200'>"))
-
-register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
 
 genealogy_geo <- genealogy_data %>% 
   mutate_geocode(location = street_address, 
