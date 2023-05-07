@@ -7,7 +7,7 @@ output: html_document
 
 ## Libraries
 
-```{r load-packages}
+```{r load-packages, message=FALSE}
 
 library(tidyverse) ## For plotting and data wrangling.
 
@@ -25,12 +25,17 @@ library(kableExtra) ## Table output
 
 library(ggmap) ## for google geocoding
 
-source("data_cleaning.R")
+worcester_geo <- read_csv("data/worcester_geo_cleaned.csv")
+ma_geo <- read_csv("data/ma_geo_cleaned.csv")
+genealogy_geo <- read_csv("data/genealogy_cleaned.csv")
+map_data <- read_csv("data/map_data_cleaned.csv")
+job_title_popularity <- read_csv("data/job_titles_cleaned.csv")
+
 ```
 
 ## Base Map
 
-```{r ggplot-map}
+```{r ggplot-map, message=FALSE}
 ggplot(data = map_data) +
   geom_sf(aes(geometry = geometry, fill = number)) +
   scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
@@ -42,7 +47,7 @@ ggplot(data = map_data) +
 ```
 ## Regionality of Job Titles
 
-```{r job-title-map}
+```{r job-title-map, message=FALSE}
 ggplot(job_title_popularity) +
   geom_sf(aes(geometry = geometry, fill = job_title)) +
   scale_fill_manual(values = c("Apprentices" = "lightpink", "Dressmaker" = "lightskyblue", "Mantuamaker" = "lightgoldenrod", "Milliner" = "thistle", "Tailor" = "lightslategray", "Tailoress" = "darkseagreen1"), na.value = "white") +
@@ -52,7 +57,7 @@ ggplot(job_title_popularity) +
   theme_void()
 ```
 
-```{r worcester-map}
+```{r worcester-map, message=FALSE}
 
 worcester_map <- leaflet(data = worcester_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -88,7 +93,7 @@ worcester_map
 
 ## Locations of all Points in Seamstress Set
 
-```{r ma-leaflet-map}
+```{r ma-leaflet-map, message=FALSE}
 
 ma_map <- leaflet(data = ma_geo) %>% 
   addTiles(group = "OSM") %>%
@@ -122,7 +127,7 @@ ma_map
 ```
 
 
-```{r make-genealogy-map}
+```{r make-genealogy-map, message=FALSE}
 
 genealogy_map <- leaflet(data = genealogy_geo) %>% 
   addTiles(group = "OSM") %>%
