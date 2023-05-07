@@ -176,7 +176,7 @@ ma_map <- leaflet(data = ma_geo) %>%
 ma_map
 ```
 
-## Seamstresses with Genealogy Information
+## Seamstresses with Genealogy Information 
 
 ```{r make-genealogy-map, echo=FALSE}
 
