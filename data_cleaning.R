@@ -168,7 +168,9 @@ map_data <- seamstresses %>%
   group_by(city) %>% 
   summarize(number = n()) %>% 
   right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
-  select(city, number, geometry) 
+  select(city, number, geometry) %>% 
+  st_as_sf() %>% 
+  write_csv("data/map_data_cleaned.csv")
 
 # Determine frequencies of job titles by town
 job_title_popularity <- seamstresses %>% 
@@ -188,7 +190,10 @@ job_title_popularity <- seamstresses %>%
   mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
                           TRUE ~ toupper(city))) %>% 
   right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
-  select(city, job_title, geometry) 
+  select(city, job_title, geometry) %>% 
+  st_as_sf() %>% 
+  ms_simplify(keep = 0.02) %>% 
+  write_csv("data/job_titles_cleaned.csv")
 
 # Geocode Worcester Sheet
 register_google(key = "AIzaSyBJKyY6SoLXHZlJ691STnK20wTleh4O6Aw")
@@ -209,18 +214,22 @@ worcester_geo <- worcester_geo %>%
                        "<br>", job_title, 
                        "<br>", street_address,
                        "<br>", source_name)
-  )
+  ) %>% 
+  write_csv("data/worcester_geo_cleaned.csv")
 
-worcester_geo <- worcester_geo %>% 
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
-  st_jitter(factor = 0.002) 
+# worcester_geo <- worcester_geo %>% 
+#   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+#   st_jitter(factor = 0.002) %>% 
+  
 
 # Geocode MA Data
 seamstresses_ma <- seamstresses %>% 
   filter(state == "MA") %>% 
   filter(is.na(city) == FALSE) %>% 
+  filter(city != "Haverhill") %>% 
   select(name, city, state, location_type, job_title, source_name, year, ad_id) %>% 
   mutate(city = case_when(city == "Williamsburgh" ~ "Williamsburg",
+                          city == "Haverhill" ~ "Haverhill",
                           TRUE ~ city)) %>% 
   mutate(city_state = paste(city, state, sep = ", ")) 
 
@@ -235,11 +244,15 @@ ma_geo <- seamstresses_ma %>%
                           "<br>", job_title, 
                           "<br>", city_state,
                           "<br>", source_name)
-  )
+  ) %>% 
+  mutate(lat = jitter(lat, factor = 0.005)) %>% 
+  mutate(lon = jitter(lon, factor = 0.005)) %>% 
+  write_csv("data/ma_geo_cleaned.csv")
 
-ma_geo <- ma_geo %>% 
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
-  st_jitter(factor = 0.002) 
+# ma_geo <- ma_geo %>% 
+#   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+#   st_jitter(factor = 0.002) %>% 
+#   write_csv("data/ma_geo_cleaned.csv")
 
 # Geocode Genealogy Data
 genealogy_data <- genealogy %>% 
@@ -262,6 +275,10 @@ genealogy_geo <- genealogy_data %>%
   mutate_geocode(location = street_address, 
                  output = "latlon", 
                  source = "google") %>% 
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
-  st_jitter(factor = 0.002) 
+  mutate(lat = jitter(lat, factor = 0.005)) %>% 
+  mutate(lon = jitter(lon, factor = 0.005)) %>% 
+  # st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  # st_jitter(factor = 0.002) %>% 
+  write_csv("data/genealogy_cleaned.csv")
+
 

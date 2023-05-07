@@ -2,12 +2,15 @@
 title: "Maps"
 author: "Grace Acton"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  rmarkdown::html_document:
+    theme: paper
 ---
 
-## Libraries
 
-```{r load-packages, echo=FALSE}
+```{r load-packages, include = FALSE, warning = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 library(tidyverse) ## For plotting and data wrangling.
 
@@ -25,12 +28,55 @@ library(kableExtra) ## Table output
 
 library(ggmap) ## for google geocoding
 
+library(rmapshaper)
+
 worcester_geo <- read_csv("data/worcester_geo_cleaned.csv")
 ma_geo <- read_csv("data/ma_geo_cleaned.csv")
 genealogy_geo <- read_csv("data/genealogy_cleaned.csv")
-map_data <- read_csv("data/map_data_cleaned.csv")
-job_title_popularity <- read_csv("data/job_titles_cleaned.csv")
+seamstresses <- read_csv("data/seamstresses.csv")
 
+# prep map_data 
+
+# Load data 
+ma_towns <- st_read("data/townssurvey_shp/TOWNSSURVEY_POLYM.shp")
+
+# Join shape data to MA set
+map_data <- seamstresses %>% 
+  filter(state == "MA") %>% 
+  filter(is.na(city) == FALSE) %>% 
+  select(city) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  group_by(city) %>% 
+  summarize(number = n()) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, number, geometry) %>% 
+  st_as_sf() %>% 
+  ms_simplify(keep = 0.02)
+
+# prep job_title_popularity
+
+# Determine frequencies of job titles by town
+job_title_popularity <- seamstresses %>% 
+  separate_rows(job_title, sep = "; ") %>% 
+  mutate(job_title = fct_collapse(job_title,
+                                  Milliner = c("Milliner", "milliner"),
+                                  Dressmaker = c("Dressmaker", "dressmaker"),
+                                  Tailor = c("Tailor"),
+                                  Tailoress = c("Tailoress", "tailoress"),
+                                  Mantuamaker = c("Mantuamaker", "mantuamaker", "Mantua-Maker"),
+                                  Apprentices = c("apprentices")
+  )) %>% 
+  filter(state == "MA", is.na(job_title) == FALSE, is.na(city) == FALSE) %>% 
+  group_by(city) %>% 
+  count(job_title) %>% 
+  slice(which.max(n)) %>% 
+  mutate(city = case_when(city == "Williamsburgh" ~ "WILLIAMSBURG",
+                          TRUE ~ toupper(city))) %>% 
+  right_join(y = ma_towns, by = c("city" = "TOWN")) %>% 
+  select(city, job_title, geometry) %>% 
+  st_as_sf() %>% 
+  ms_simplify(keep = 0.02)
 ```
 
 ## Base Map
@@ -39,13 +85,16 @@ job_title_popularity <- read_csv("data/job_titles_cleaned.csv")
 
 ggplot(data = map_data) +
   geom_sf(aes(geometry = geometry, fill = number)) +
-  scale_fill_gradient(low = "lightskyblue", high = "midnightblue", na.value = "white") +
+  scale_fill_gradient(low = "lightskyblue", 
+                      high = "midnightblue", 
+                      na.value = "white") +
   labs(title = "Ads per Town",
        subtitle = "Massachusetts",
        color = "Number of Ads") +
   theme_void()
   
 ```
+
 ## Regionality of Job Titles
 
 ```{r job-title-map, echo=FALSE}
@@ -126,6 +175,8 @@ ma_map <- leaflet(data = ma_geo) %>%
 
 ma_map
 ```
+
+## Seamstresses with Genealogy Information
 
 ```{r make-genealogy-map, echo=FALSE}
 
